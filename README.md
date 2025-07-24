@@ -2,6 +2,8 @@
 
 Modern portfolio website built with Next.js 14, TypeScript, and Tailwind CSS.
 
+🔴 **Status**: Currently deploying to GitHub Pages...
+
 ## 🎯 Project Overview
 
 This is a complete rewrite of my portfolio website with the following goals:
