@@ -1,0 +1,441 @@
+---
+title: "Unity×Photonで作るマルチプレイヤーゲーム開発記"
+description: "Fall Guys風アクションゲームをUnityとPhotonで開発した際の技術的挑戦と学びを詳細解説"
+date: "2020-05-15"
+tags: ["Unity", "Photon", "Game Development", "Multiplayer", "C#", "Networking"]
+category: "Game Development"
+author: "Satoru Akita"
+featured: false
+---
+
+# Unity×Photonで作るマルチプレイヤーゲーム開発記
+
+2020年のステイホーム期間中、Fall Guysの大ブームに触発されて、自分でもマルチプレイヤーアクションゲームを作ってみたくなりました。Unity と Photon PUN2 を使って開発した5ステージのアクションゲームについて、技術的な挑戦と学びを振り返ります。
+
+## プロジェクト概要
+
+### ゲームコンセプト
+- **ジャンル**: 3Dアクションゲーム（Fall Guys風）
+- **プレイヤー数**: 最大8人同時プレイ
+- **ステージ数**: 5つのユニークなステージ
+- **世界観**: ゼルダの祠のような神秘的で無機質な空間
+- **目標**: 各ステージのワープゲートを通過してクリア
+
+### 技術スタック
+- **ゲームエンジン**: Unity 2020.3 LTS
+- **ネットワーキング**: Photon PUN2
+- **プログラミング言語**: C#
+- **3Dモデリング**: Blender, ProBuilder
+- **エフェクト**: Unity Particle System, Shader Graph
+
+## 技術的挑戦
+
+### 1. ネットワーク同期システム
+
+#### Photon PUN2 の選択理由
+```csharp
+// Photon PUN2 を選んだ理由
+// - Unity との高い親和性
+// - CCU（同時接続ユーザー）20人まで無料
+// - リアルタイム通信の安定性
+// - 豊富なドキュメントとコミュニティ
+```
+
+#### プレイヤー同期の実装
+```csharp
+public class PlayerController : MonoBehaviourPunPV, IPunObservable
+{
+    private Vector3 networkPosition;
+    private Quaternion networkRotation;
+    
+    void Update()
+    {
+        if (photonView.isMine)
+        {
+            // ローカルプレイヤーの移動処理
+            HandleMovement();
+        }
+        else
+        {
+            // リモートプレイヤーの位置補間
+            transform.position = Vector3.Lerp(transform.position, networkPosition, Time.deltaTime * 10);
+            transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 10);
+        }
+    }
+    
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // データ送信
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(velocity);
+        }
+        else
+        {
+            // データ受信
+            networkPosition = (Vector3)stream.ReceiveNext();
+            networkRotation = (Quaternion)stream.ReceiveNext();
+        }
+    }
+}
+```
+
+### 2. 物理演算とネットワークの両立
+
+#### 課題: 物理挙動の同期
+マルチプレイヤーゲームにおける最大の技術的挑戝は、各プレイヤーの物理演算結果を同期させることでした。
+
+```csharp
+public class NetworkedRigidbody : MonoBehaviourPunPV
+{
+    private Rigidbody rb;
+    private bool isKinematic = false;
+    
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        
+        // マスタークライアントのみ物理演算を実行
+        if (!photonView.isMine)
+        {
+            rb.isKinematic = true;
+        }
+    }
+    
+    [PunRPC]
+    void ApplyForce(Vector3 force, ForceMode mode)
+    {
+        if (photonView.isMine)
+        {
+            rb.AddForce(force, mode);
+        }
+    }
+}
+```
+
+#### 解決策: 権威サーバーパターン
+- **マスタークライアント**: 物理演算の計算を担当
+- **他のクライアント**: 結果を受信して表示のみ
+- **オーナーシップ転送**: マスタークライアント退出時の処理
+
+### 3. ステージ設計とレベルデザイン
+
+#### ステージ1: 「回転する足場」
+```csharp
+public class RotatingPlatform : MonoBehaviour
+{
+    public float rotationSpeed = 30f;
+    public Vector3 rotationAxis = Vector3.up;
+    
+    void Update()
+    {
+        transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
+    }
+    
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // プレイヤーを足場と一緒に回転させる
+            other.transform.RotateAround(transform.position, rotationAxis, rotationSpeed * Time.deltaTime);
+        }
+    }
+}
+```
+
+#### ステージ2: 「消える床」
+```csharp
+public class DisappearingFloor : MonoBehaviourPunPV
+{
+    public float disappearDelay = 2f;
+    public float respawnDelay = 5f;
+    
+    IEnumerator DisappearSequence()
+    {
+        yield return new WaitForSeconds(disappearDelay);
+        
+        // アニメーション付きで床を非表示
+        yield return StartCoroutine(FadeOut());
+        
+        yield return new WaitForSeconds(respawnDelay);
+        
+        // 床を再表示
+        yield return StartCoroutine(FadeIn());
+    }
+}
+```
+
+### 4. ビジュアルエフェクトと世界観
+
+#### ゼルダの祠風の世界観実現
+```hlsl
+// Shader Graph を使用したエネルギー効果
+Shader "Custom/EnergyFlow"
+{
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "white" {}
+        _FlowSpeed ("Flow Speed", Float) = 1.0
+        _EmissionColor ("Emission Color", Color) = (0, 1, 1, 1)
+    }
+    
+    SubShader
+    {
+        // 透明感のあるエネルギー効果
+        Blend SrcAlpha OneMinusSrcAlpha
+        
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            
+            float4 frag (v2f i) : SV_Target
+            {
+                // UV座標を時間で流す
+                float2 flowUV = i.uv + _Time.y * _FlowSpeed;
+                float4 col = tex2D(_MainTex, flowUV);
+                
+                return col * _EmissionColor;
+            }
+            ENDCG
+        }
+    }
+}
+```
+
+#### パーティクルシステム
+```csharp
+public class WarpGateEffect : MonoBehaviour
+{
+    public ParticleSystem warpParticles;
+    public AudioSource warpSound;
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // ワープエフェクト再生
+            PlayWarpEffect();
+            
+            // プレイヤーをクリア処理
+            StartCoroutine(WarpPlayer(other.gameObject));
+        }
+    }
+    
+    IEnumerator WarpPlayer(GameObject player)
+    {
+        // パーティクル効果
+        warpParticles.Play();
+        warpSound.Play();
+        
+        // プレイヤーを徐々に透明化
+        yield return StartCoroutine(FadeOutPlayer(player));
+        
+        // 次のステージへ移動
+        GameManager.Instance.CompleteStage(player);
+    }
+}
+```
+
+## 開発で学んだこと
+
+### 1. ネットワークゲーム開発の難しさ
+
+#### レイテンシ（遅延）対策
+```csharp
+public class LatencyCompensation : MonoBehaviour
+{
+    public float compensationThreshold = 0.1f;
+    
+    void UpdatePosition(Vector3 targetPos, float lag)
+    {
+        if (lag > compensationThreshold)
+        {
+            // 遅延を考慮した位置予測
+            Vector3 predictedPos = targetPos + velocity * lag;
+            transform.position = Vector3.Lerp(transform.position, predictedPos, Time.deltaTime * 15f);
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10f);
+        }
+    }
+}
+```
+
+#### 同期頻度の最適化
+- **位置・回転**: 20Hz（50ms間隔）
+- **重要なイベント**: RPC で即座に送信
+- **効果音・エフェクト**: ローカルで再生
+
+### 2. パフォーマンス最適化
+
+#### オブジェクトプーリング
+```csharp
+public class ParticlePool : MonoBehaviour
+{
+    public GameObject particlePrefab;
+    public int poolSize = 50;
+    
+    private Queue<GameObject> particlePool = new Queue<GameObject>();
+    
+    void Start()
+    {
+        // プール初期化
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject particle = Instantiate(particlePrefab);
+            particle.SetActive(false);
+            particlePool.Enqueue(particle);
+        }
+    }
+    
+    public GameObject GetParticle()
+    {
+        if (particlePool.Count > 0)
+        {
+            GameObject particle = particlePool.Dequeue();
+            particle.SetActive(true);
+            return particle;
+        }
+        return Instantiate(particlePrefab);
+    }
+}
+```
+
+#### LoD（Level of Detail）システム
+```csharp
+public class DynamicLOD : MonoBehaviour
+{
+    public GameObject[] lodLevels;
+    public float[] distances;
+    
+    void Update()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, Camera.main.transform.position);
+        
+        for (int i = 0; i < distances.Length; i++)
+        {
+            lodLevels[i].SetActive(distanceToPlayer >= distances[i]);
+        }
+    }
+}
+```
+
+### 3. ユーザビリティの重要性
+
+#### 直感的な操作システム
+```csharp
+public class PlayerInput : MonoBehaviour
+{
+    [Header("Movement Settings")]
+    public float moveSpeed = 8f;
+    public float jumpForce = 12f;
+    public float groundCheckDistance = 0.1f;
+    
+    private bool isGrounded;
+    private Rigidbody rb;
+    
+    void Update()
+    {
+        // 地面判定
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+        
+        // 移動入力
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        
+        Vector3 movement = new Vector3(horizontal, 0, vertical) * moveSpeed;
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        
+        // ジャンプ
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+}
+```
+
+#### フィードバックシステム
+```csharp
+public class FeedbackManager : MonoBehaviour
+{
+    [Header("Audio Feedback")]
+    public AudioClip jumpSound;
+    public AudioClip landSound;
+    public AudioClip collectSound;
+    
+    [Header("Visual Feedback")]
+    public ParticleSystem jumpParticles;
+    public ParticleSystem landParticles;
+    
+    public void PlayJumpFeedback()
+    {
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+        jumpParticles.Play();
+        
+        // コントローラー振動
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            StartCoroutine(VibrateController(0.2f, 0.3f));
+        }
+    }
+}
+```
+
+## 困難だった点と解決策
+
+### 1. 接続の安定性
+**問題**: プレイヤーの接続切断時にゲームが不安定になる
+**解決**: マスタークライアント交代システムの実装
+
+### 2. 同期ズレ
+**問題**: プレイヤー間で物理演算結果が異なる
+**解決**: 権威サーバーパターンとタイムスタンプベースの同期
+
+### 3. パフォーマンス低下
+**問題**: 8人同時プレイ時のフレームレート低下
+**解決**: オブジェクトプーリング、LoD、描画最適化
+
+## プロジェクトの成果
+
+### 技術的成果
+- **ネットワークプログラミング**: リアルタイム同期技術の習得
+- **ゲーム物理**: Unity物理エンジンの深い理解
+- **パフォーマンス最適化**: 大規模なゲーム開発での最適化手法
+- **ユーザビリティ**: プレイヤー体験を重視した設計思想
+
+### 学習効果
+- **問題解決能力**: 複雑な技術課題への段階的アプローチ
+- **設計思想**: スケーラブルで保守可能なコード設計
+- **ユーザー視点**: 技術的完成度とユーザー体験のバランス
+
+## 今後の展開
+
+このプロジェクトで得た知見は、現在のAI/MLエンジニアとしての仕事でも活かされています：
+
+- **リアルタイム処理**: AI推論のレイテンシ最適化
+- **分散システム**: マルチノードでのモデル学習・推論
+- **ユーザー体験**: AI機能のユーザビリティ設計
+
+## まとめ
+
+Unity × Photon でのマルチプレイヤーゲーム開発は、技術的に非常に挑戦的でしたが、同時に大きな学びを得られるプロジェクトでした。ネットワークプログラミング、ゲーム物理、ユーザー体験設計など、幅広い技術領域をカバーし、現在の仕事にも活かされる貴重な経験となりました。
+
+---
+
+## 関連記事
+- [ゲーム開発から学ぶリアルタイムシステム設計](/blog/realtime-system-design)
+- [Unity で学ぶ3D数学とベクトル演算](/blog/unity-3d-math)
+
+## 技術資料
+- [Photon PUN2 公式ドキュメント](https://doc.photonengine.com/pun2)
+- [Unity Multiplayer Networking](https://docs.unity3d.com/Manual/UNet.html)
+
+---
+
+*このプロジェクトのソースコードや詳細な技術解説について質問があれば、お気軽にお聞かせください。*
