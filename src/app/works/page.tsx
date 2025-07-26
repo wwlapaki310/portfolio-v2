@@ -11,9 +11,9 @@ interface WorkProject {
   featured?: boolean
 }
 
-// 全プロジェクトデータ（詳細ページと同期）
+// 全20プロジェクトデータ（詳細ページと同期）
 const projectsData: WorkProject[] = [
-  // Featured Projects
+  // Featured Projects (注目プロジェクト)
   {
     id: 'biomod-2015',
     title: 'BIOMOD 2015 - DNA分子ロボット設計',
@@ -44,6 +44,28 @@ const projectsData: WorkProject[] = [
     status: 'completed',
     featured: true
   },
+  {
+    id: 'color-music-app',
+    title: '物体認識音楽生成アプリ',
+    description: '認識した物体のHSV色彩情報から音楽を生成するアプリ。Sechack365海外派遣チームで企業賞受賞。',
+    category: 'AI/ML',
+    tags: ['Sechack365', 'Computer Vision', 'Music Generation'],
+    year: '2019',
+    status: 'completed',
+    featured: true
+  },
+  
+  // Research Projects
+  {
+    id: 'biomod-2016',
+    title: 'BIOMOD 2016 - Webページ担当',
+    description: 'BIOMOD 2016コンテストでWebページ制作を担当。前年の優勝チームとして技術継承とWeb開発を主導。',
+    category: 'Research',
+    tags: ['BIOMOD', 'Web Development', 'HTML5'],
+    year: '2016',
+    status: 'completed'
+  },
+  
   // Web Development Projects
   {
     id: 'react-movie-search',
@@ -72,16 +94,17 @@ const projectsData: WorkProject[] = [
     year: '2019',
     status: 'completed'
   },
-  // AI/ML Projects  
   {
-    id: 'color-music-app',
-    title: '物体認識音楽生成アプリ',
-    description: '認識した物体のHSV色彩情報から音楽を生成するアプリ。Sechack365海外派遣チームで企業賞受賞。',
-    category: 'AI/ML',
-    tags: ['Sechack365', 'Computer Vision', 'Music Generation'],
-    year: '2019',
+    id: 'caption-image-generator',
+    title: 'セリフ付き画像作成サービス',
+    description: '画像にセリフやキャプションを簡単に追加できるWebサービス。アニメ・マンガ風のセリフ装飾や多彩なフォント効果が特徴。',
+    category: 'Web Development',
+    tags: ['Image Processing', 'Canvas API', 'Typography'],
+    year: '2020',
     status: 'completed'
   },
+  
+  // AI/ML Projects  
   {
     id: 'face-hiding-linebot',
     title: '顔隠しLinebot',
@@ -100,6 +123,16 @@ const projectsData: WorkProject[] = [
     year: '2018',
     status: 'completed'
   },
+  {
+    id: 'comprehension-assessment-app',
+    title: '理解度判定Webアプリ（DATEAPPS2019）',
+    description: 'DATEAPPS2019で発表した、学習者の理解度をAIで判定するWebアプリ。表情認識と解答分析で総合的な学習サポート。',
+    category: 'AI/ML',
+    tags: ['DATEAPPS', 'EdTech', 'Computer Vision'],
+    year: '2019',
+    status: 'completed'
+  },
+  
   // Mobile Apps
   {
     id: 'face-swap-app',
@@ -128,6 +161,7 @@ const projectsData: WorkProject[] = [
     year: '2017',
     status: 'completed'
   },
+  
   // IoT Projects
   {
     id: 'iot-bookshelf',
@@ -136,6 +170,46 @@ const projectsData: WorkProject[] = [
     category: 'IoT',
     tags: ['IoT', 'Arduino', 'Sensor'],
     year: '2014',
+    status: 'completed'
+  },
+  {
+    id: 'sleep-advisor-speaker',
+    title: '睡眠アドバイススマートスピーカー（JPhacks2018）',
+    description: 'JPhacks2018で開発した、個人の睡眠パターンを分析して最適な睡眠アドバイスを提供するスマートスピーカーアプリ。',
+    category: 'IoT',
+    tags: ['JPhacks', 'Alexa Skill', 'Healthcare'],
+    year: '2018',
+    status: 'completed'
+  },
+  {
+    id: 'milking-game',
+    title: '乳しぼりゲーム（iCAN\'14）',
+    description: 'センサー技術を活用した体感型乳しぼりゲーム。Arduino+圧力センサーでリアルな酪農体験を再現。',
+    category: 'IoT',
+    tags: ['iCAN', 'Arduino', 'Sensor'],
+    year: '2014',
+    status: 'completed'
+  },
+  
+  // Game Development Projects
+  {
+    id: 'ball-rolling-game',
+    title: 'ボール転がしゲーム',
+    description: 'Unity物理エンジンを活用した3Dボール転がしゲーム。重力とモーメンタムを活用したパズル要素とスピード感を両立。',
+    category: 'Game Development',
+    tags: ['Unity', 'Physics', '3D'],
+    year: '2019',
+    status: 'completed'
+  },
+  
+  // Engineering Projects
+  {
+    id: 'rocket-project',
+    title: 'ロケット製作プロジェクト',
+    description: '大学のロケット製作プロジェクトに参加。固体燃料ロケットの設計・製作・打ち上げ実験を実施。',
+    category: 'Engineering',
+    tags: ['Rocket', 'Engineering', 'CAD'],
+    year: '2016',
     status: 'completed'
   }
 ]
@@ -146,7 +220,8 @@ const categoryColors = {
   'Game Development': 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
   'Mobile App': 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200',
   'IoT': 'bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200',
-  'Web Development': 'bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200'
+  'Web Development': 'bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200',
+  'Engineering': 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
 }
 
 export default function Works() {
@@ -169,18 +244,20 @@ export default function Works() {
         <p className="text-lg text-gray-600 dark:text-gray-400">
           過去に取り組んだプロジェクトや研究、ハッカソンでの成果物を紹介しています。
         </p>
-        <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-          <span className="font-medium text-teal-600 dark:text-teal-400">
-            13個のプロジェクト
+        <div className="mt-4 flex items-center gap-4">
+          <span className="text-sm font-medium text-teal-600 dark:text-teal-400">
+            🎉 全20個のプロジェクト公開完了！
           </span>
-          が公開中（8個増加 🎉）
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            Phase 1A移行作業完了 (7月26日)
+          </span>
         </div>
       </div>
 
       {/* Featured Projects */}
       <section className="mb-16">
         <h2 className="text-2xl font-semibold text-foreground mb-6">🌟 注目プロジェクト</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProjects.map((project) => (
             <Link
               key={project.id}
@@ -203,7 +280,7 @@ export default function Works() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors line-clamp-2">
                   {project.title}
                 </h3>
                 
@@ -212,7 +289,7 @@ export default function Works() {
                 </p>
                 
                 <div className="flex flex-wrap gap-1">
-                  {project.tags.slice(0, 3).map((tag) => (
+                  {project.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
                       className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded"
@@ -220,9 +297,9 @@ export default function Works() {
                       {tag}
                     </span>
                   ))}
-                  {project.tags.length > 3 && (
+                  {project.tags.length > 2 && (
                     <span className="text-xs text-gray-500 dark:text-gray-400 px-2 py-1">
-                      +{project.tags.length - 3} more
+                      +{project.tags.length - 2}
                     </span>
                   )}
                 </div>
@@ -236,7 +313,9 @@ export default function Works() {
       <section className="mb-12">
         <h2 className="text-2xl font-semibold text-foreground mb-6">📁 カテゴリ別プロジェクト</h2>
         
-        {Object.entries(projectsByCategory).map(([category, projects]) => (
+        {Object.entries(projectsByCategory)
+          .sort(([,a], [,b]) => b.length - a.length) // プロジェクト数順でソート
+          .map(([category, projects]) => (
           <div key={category} className="mb-8">
             <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
               <span className={`text-xs px-2 py-1 rounded ${categoryColors[category as keyof typeof categoryColors]}`}>
@@ -247,7 +326,7 @@ export default function Works() {
               </span>
             </h3>
             
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {projects.map((project) => (
                 <Link
                   key={project.id}
@@ -256,7 +335,7 @@ export default function Works() {
                 >
                   <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md hover:border-teal-300 dark:hover:border-teal-600 transition-all duration-300">
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className="text-lg font-semibold text-foreground group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                      <h4 className="text-lg font-semibold text-foreground group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors line-clamp-2">
                         {project.title}
                       </h4>
                       <span className="text-xs text-gray-500 dark:text-gray-400 ml-4 flex-shrink-0">
@@ -269,7 +348,7 @@ export default function Works() {
                     </p>
                     
                     <div className="flex flex-wrap gap-1">
-                      {project.tags.slice(0, 4).map((tag) => (
+                      {project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
                           className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded"
@@ -277,9 +356,9 @@ export default function Works() {
                           {tag}
                         </span>
                       ))}
-                      {project.tags.length > 4 && (
+                      {project.tags.length > 3 && (
                         <span className="text-xs text-gray-500 dark:text-gray-400 px-2 py-1">
-                          +{project.tags.length - 4}
+                          +{project.tags.length - 3}
                         </span>
                       )}
                     </div>
@@ -291,20 +370,29 @@ export default function Works() {
         ))}
       </section>
 
-      {/* Coming Soon */}
+      {/* Statistics */}
       <section className="text-center py-12 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-        <h2 className="text-2xl font-semibold text-foreground mb-4">🚀 さらに追加予定</h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
-          現在、過去のプロジェクトを順次移行中です。近日中にさらに7+件のプロジェクトを追加予定です。
-        </p>
-        <div className="flex flex-wrap justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-          <span>セリフ付き画像作成サービス</span> •
-          <span>理解度判定Webアプリ</span> •
-          <span>睡眠アドバイスAI</span> •
-          <span>ボール転がしゲーム</span> •
-          <span>BIOMOD 2016</span> •
-          <span>乳しぼりゲーム</span> •
-          <span>ロケット製作</span>
+        <h2 className="text-2xl font-semibold text-foreground mb-4">📊 プロジェクト統計</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <div className="text-3xl font-bold text-teal-600 dark:text-teal-400">20</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">総プロジェクト数</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-green-600 dark:text-green-400">{Object.keys(projectsByCategory).length}</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">技術カテゴリ</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">2014</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">開始年〜現在</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Phase 1A完了</div>
+          </div>
+        </div>
+        <div className="mt-6 text-gray-600 dark:text-gray-400">
+          <p>DNA分子ロボットから最新のAI技術まで、多様な技術分野での実績</p>
         </div>
       </section>
     </div>
