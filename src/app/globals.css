@@ -25,3 +25,154 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Print Optimization Styles */
+@media print {
+  /* Reset colors for print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 0.5in;
+    size: A4;
+  }
+
+  /* Hide non-essential elements */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Text color overrides for print */
+  .print\:text-black {
+    color: #000000 !important;
+  }
+
+  .print\:text-gray-800 {
+    color: #1f2937 !important;
+  }
+
+  .print\:text-gray-700 {
+    color: #374151 !important;
+  }
+
+  .print\:text-gray-600 {
+    color: #4b5563 !important;
+  }
+
+  /* Background color overrides */
+  .print\:bg-white {
+    background-color: #ffffff !important;
+  }
+
+  /* Typography adjustments */
+  .print\:text-3xl {
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
+  }
+
+  .print\:text-xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .print\:text-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .print\:prose-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .print\:prose-black * {
+    color: #000000 !important;
+  }
+
+  /* Spacing adjustments */
+  .print\:mb-6 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .print\:mb-4 {
+    margin-bottom: 1rem !important;
+  }
+
+  .print\:mt-8 {
+    margin-top: 2rem !important;
+  }
+
+  /* Page break controls */
+  .print\:break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print\:break-after-avoid {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .print\:break-before-always {
+    break-before: always !important;
+    page-break-before: always !important;
+  }
+
+  /* Remove shadows and borders that don't print well */
+  .shadow,
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg {
+    box-shadow: none !important;
+  }
+
+  .border {
+    border: 1px solid #e5e7eb !important;
+  }
+
+  /* Ensure links are visible in print */
+  a {
+    color: #1f2937 !important;
+    text-decoration: underline;
+  }
+
+  /* Remove unnecessary backgrounds */
+  .bg-gray-50,
+  .dark\:bg-gray-800 {
+    background-color: transparent !important;
+  }
+
+  /* Font size adjustments for better print readability */
+  h1 {
+    font-size: 1.875rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  p {
+    margin-bottom: 0.75rem !important;
+  }
+
+  ul {
+    margin-bottom: 1rem !important;
+  }
+
+  li {
+    margin-bottom: 0.25rem !important;
+  }
+}
