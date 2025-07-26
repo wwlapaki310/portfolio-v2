@@ -12,11 +12,11 @@
   --color-orange: #f97316;
   --color-amber: #f59e0b;
   
-  /* Gray Scale */
+  /* Gray Scale - Improved Contrast */
   --color-charcoal: #1f2937;
-  --color-slate: #64748b;
-  --color-light-gray: #f1f5f9;
-  --color-medium-gray: #94a3b8;
+  --color-slate: #475569; /* Darker for better contrast */
+  --color-light-gray: #f8fafc; /* Lighter background */
+  --color-medium-gray: #64748b; /* Better contrast */
   
   /* Spacing Scale */
   --space-xs: 0.25rem;
@@ -50,11 +50,11 @@
   --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
   --shadow-2xl: 0 25px 50px rgba(0,0,0,0.25);
   
-  /* Glassmorphism */
-  --glass-bg: rgba(255,255,255,0.1);
-  --glass-bg-dark: rgba(0,0,0,0.1);
-  --glass-border: rgba(255,255,255,0.2);
-  --glass-border-dark: rgba(255,255,255,0.1);
+  /* Glassmorphism - Improved Contrast */
+  --glass-bg: rgba(255,255,255,0.15); /* Increased opacity */
+  --glass-bg-dark: rgba(0,0,0,0.15); /* Increased opacity */
+  --glass-border: rgba(255,255,255,0.25); /* More visible border */
+  --glass-border-dark: rgba(255,255,255,0.15); /* More visible border */
   --glass-blur: 16px;
   
   /* Gradients */
@@ -75,13 +75,13 @@
   --radius-2xl: 1.5rem;
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - Improved Contrast */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--color-black);
-    --foreground: #ededed;
-    --glass-bg: var(--glass-bg-dark);
-    --glass-border: var(--glass-border-dark);
+    --foreground: #f8fafc; /* Much brighter for better contrast */
+    --glass-bg: rgba(15,15,15,0.8); /* Darker glass background */
+    --glass-border: rgba(255,255,255,0.2); /* More visible border */
   }
 }
 
@@ -132,7 +132,7 @@ body {
 
 /* Component Utilities */
 @layer components {
-  /* Glassmorphism Effect */
+  /* Glassmorphism Effect - Improved */
   .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -142,10 +142,18 @@ body {
   }
   
   .glass-dark {
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4); /* Increased opacity */
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  
+  .glass-light {
+    background: rgba(255,255,255,0.85); /* Much more opaque */
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: var(--shadow-lg);
   }
   
   /* Gradient Backgrounds */
@@ -247,7 +255,7 @@ body {
   
   .btn-ghost {
     background: transparent;
-    color: var(--color-teal);
+    color: var(--color-charcoal);
     border: 2px solid var(--color-teal);
   }
   
@@ -255,6 +263,12 @@ body {
     background: var(--color-teal);
     color: white;
     transform: translateY(-2px);
+  }
+  
+  /* Dark mode button ghost */
+  .dark .btn-ghost {
+    color: var(--color-white);
+    border-color: var(--color-teal);
   }
   
   /* Animated Background */
@@ -314,17 +328,17 @@ body {
     padding: var(--space-3xl) 0;
   }
   
-  /* Navigation Styles */
+  /* Navigation Styles - Improved Contrast */
   .nav-glass {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9); /* More opaque */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     transition: all var(--transition-base);
   }
   
@@ -333,14 +347,41 @@ body {
     box-shadow: var(--shadow-md);
   }
   
-  /* Dark mode navigation */
+  /* Dark mode navigation - Improved */
   .dark .nav-glass {
-    background: rgba(10, 10, 10, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.9); /* More opaque */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
   
   .dark .nav-glass.scrolled {
     background: rgba(10, 10, 10, 0.95);
+  }
+}
+
+/* Text Color Utilities - High Contrast */
+@layer utilities {
+  .text-high-contrast {
+    color: var(--color-charcoal);
+  }
+  
+  .dark .text-high-contrast {
+    color: #f8fafc;
+  }
+  
+  .text-medium-contrast {
+    color: #374151;
+  }
+  
+  .dark .text-medium-contrast {
+    color: #d1d5db;
+  }
+  
+  .text-low-contrast {
+    color: #6b7280;
+  }
+  
+  .dark .text-low-contrast {
+    color: #9ca3af;
   }
 }
 
@@ -386,6 +427,21 @@ body {
 .focus\:ring-orange:focus {
   outline: 2px solid var(--color-orange);
   outline-offset: 2px;
+}
+
+/* High Contrast Focus for Accessibility */
+@media (prefers-contrast: high) {
+  .btn, .glass, a {
+    border-width: 2px !important;
+  }
+  
+  .text-gray-500, .text-gray-400 {
+    color: var(--color-charcoal) !important;
+  }
+  
+  .dark .text-gray-300 {
+    color: #f8fafc !important;
+  }
 }
 
 /* Selection Colors */
