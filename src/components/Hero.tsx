@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/Button'
+import { StaticButton } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Glass } from '@/components/ui/Glass'
 
@@ -141,23 +141,25 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
+              <StaticButton 
                 variant="primary" 
                 size="lg"
                 className="group"
+                href="/works"
               >
                 <span>View My Work</span>
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </Button>
+                <span className="ml-2">→</span>
+              </StaticButton>
               
-              <Button 
+              <StaticButton 
                 variant="secondary" 
                 size="lg"
                 className="group"
+                href="/resume.pdf"
               >
                 <span>Download Resume</span>
-                <span className="ml-2 group-hover:scale-110 transition-transform">📄</span>
-              </Button>
+                <span className="ml-2">📄</span>
+              </StaticButton>
             </div>
 
             {/* Social Links */}
@@ -167,13 +169,14 @@ export function Hero() {
                 { icon: '🐙', label: 'GitHub', href: '#' },
                 { icon: '📧', label: 'Email', href: '#' }
               ].map((social) => (
-                <button
+                <a
                   key={social.label}
+                  href={social.href}
                   className="w-12 h-12 glass rounded-full flex items-center justify-center hover-lift text-lg transition-all duration-300 hover:bg-teal-500/20"
                   aria-label={social.label}
                 >
                   {social.icon}
-                </button>
+                </a>
               ))}
             </div>
           </div>
