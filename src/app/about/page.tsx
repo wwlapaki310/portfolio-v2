@@ -5,17 +5,15 @@ import {
   AwardItem, 
   PublicationItem 
 } from '@/components/ResumeSection'
+import { PrintButton } from '@/components/PrintButton'
 
 export default function About() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="print:hidden mb-6">
-        <button 
-          onClick={() => window.print()}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-        >
+        <PrintButton className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
           📄 Download as PDF
-        </button>
+        </PrintButton>
       </div>
 
       <div className="print:text-black">
