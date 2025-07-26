@@ -1,71 +1,153 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { GlassNav } from '@/components/ui/Glass'
+import { Button } from '@/components/ui/Button'
+import { cn } from '@/lib/utils'
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Works', href: '/works' },
   { name: 'Blog', href: '/blog' },
   { name: 'Slides', href: '/slides' },
 ]
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-background/80 backdrop-blur-sm z-50">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <Link href="/" className="text-xl font-bold text-foreground hover:text-blue-600 transition-colors">
+    <GlassNav isScrolled={isScrolled}>
+      <div className="container-custom">
+        <div className="flex items-center justify-between py-4">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="text-2xl font-bold text-gradient-teal hover-lift transition-all duration-300"
+          >
             Satoru Akita
           </Link>
-          
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-blue-600 transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    'relative px-3 py-2 text-sm font-medium transition-all duration-300',
+                    'hover:text-teal-600 dark:hover:text-teal-400',
+                    isActive
+                      ? 'text-teal-600 dark:text-teal-400'
+                      : 'text-gray-700 dark:text-gray-300'
+                  )}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-teal rounded-full"></span>
+                  )}
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-teal rounded-full transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                </Link>
+              )
+            })}
           </div>
 
-          {/* Mobile menu button */}
+          {/* CTA Button & Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Button 
+              variant="ghost" 
+              size="sm"
+              className="text-sm"
+            >
+              Contact
+            </Button>
+            
+            {/* Theme Toggle Button */}
+            <button
+              className="p-2 rounded-lg glass hover-lift transition-all duration-300"
+              aria-label="Toggle theme"
+            >
+              <span className="text-lg">🌙</span>
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
+            className="md:hidden p-2 rounded-lg glass hover-lift"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <span className={cn(
+                'w-4 h-0.5 bg-current transition-all duration-300',
+                isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''
+              )}></span>
+              <span className={cn(
+                'w-4 h-0.5 bg-current transition-all duration-300 mt-1',
+                isMobileMenuOpen ? 'opacity-0' : ''
+              )}></span>
+              <span className={cn(
+                'w-4 h-0.5 bg-current transition-all duration-300 mt-1',
+                isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''
+              )}></span>
+            </div>
           </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4">
-            {navigation.map((item) => (
+      {/* Mobile Menu */}
+      <div className={cn(
+        'md:hidden glass-dark transition-all duration-300 overflow-hidden',
+        isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      )}>
+        <div className="container-custom py-4 space-y-4">
+          {navigation.map((item) => {
+            const isActive = pathname === item.href
+            return (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-2 text-foreground hover:text-blue-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                className={cn(
+                  'block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300',
+                  'hover:bg-white/10',
+                  isActive
+                    ? 'bg-gradient-teal text-white'
+                    : 'text-gray-300'
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
-            ))}
+            )
+          })}
+          
+          <div className="flex items-center justify-between pt-4 border-t border-white/20">
+            <Button variant="glass" size="sm" className="flex-1 mr-2">
+              Contact
+            </Button>
+            <button
+              className="p-3 rounded-lg glass hover-lift"
+              aria-label="Toggle theme"
+            >
+              <span className="text-lg">🌙</span>
+            </button>
           </div>
-        )}
-      </nav>
-    </header>
+        </div>
+      </div>
+    </GlassNav>
   )
 }
