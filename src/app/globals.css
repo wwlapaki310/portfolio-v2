@@ -2,177 +2,387 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design Tokens - Color Palette */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-teal: #14b8a6;
+  --color-cyan: #06b6d4;
+  --color-orange: #f97316;
+  --color-amber: #f59e0b;
+  
+  /* Gray Scale */
+  --color-charcoal: #1f2937;
+  --color-slate: #64748b;
+  --color-light-gray: #f1f5f9;
+  --color-medium-gray: #94a3b8;
+  
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* Shadows & Effects */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+  --shadow-2xl: 0 25px 50px rgba(0,0,0,0.25);
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255,255,255,0.1);
+  --glass-bg-dark: rgba(0,0,0,0.1);
+  --glass-border: rgba(255,255,255,0.2);
+  --glass-border-dark: rgba(255,255,255,0.1);
+  --glass-blur: 16px;
+  
+  /* Gradients */
+  --gradient-teal: linear-gradient(135deg, var(--color-teal), var(--color-cyan));
+  --gradient-orange: linear-gradient(135deg, var(--color-orange), var(--color-amber));
+  --gradient-dark: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
+/* Dark Mode Variables */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: var(--color-black);
     --foreground: #ededed;
+    --glass-bg: var(--glass-bg-dark);
+    --glass-border: var(--glass-border-dark);
   }
+}
+
+/* Light Mode Variables */
+:root {
+  --background: var(--color-white);
+  --foreground: var(--color-charcoal);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-feature-settings: "rlig" 1, "calt" 1;
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Typography Utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  
+  .text-gradient-teal {
+    background: var(--gradient-teal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-orange {
+    background: var(--gradient-orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
-/* Print Optimization Styles */
+/* Component Utilities */
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .glass-dark {
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  /* Gradient Backgrounds */
+  .bg-gradient-teal {
+    background: var(--gradient-teal);
+  }
+  
+  .bg-gradient-orange {
+    background: var(--gradient-orange);
+  }
+  
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  /* 3D Card Effect */
+  .card-3d {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+  }
+  
+  /* Hover Lift Effect */
+  .hover-lift {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  /* Ripple Animation */
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(20,184,166,0.3) 0%, transparent 70%);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+    pointer-events: none;
+  }
+  
+  .ripple:active::after {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  /* Modern Button Base */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: var(--text-base);
+    line-height: 1;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary {
+    background: var(--gradient-teal);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-primary:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background: var(--gradient-orange);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-secondary:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-teal);
+    border: 2px solid var(--color-teal);
+  }
+  
+  .btn-ghost:hover {
+    background: var(--color-teal);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  /* Animated Background */
+  .animated-bg {
+    background: linear-gradient(-45deg, #14b8a6, #06b6d4, #f97316, #f59e0b);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Floating Animation */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Pulse Animation */
+  .pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  /* Container Utilities */
+  .container-custom {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+  
+  .section-padding {
+    padding: var(--space-3xl) 0;
+  }
+  
+  /* Navigation Styles */
+  .nav-glass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-base);
+  }
+  
+  .nav-glass.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Dark mode navigation */
+  .dark .nav-glass {
+    background: rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark .nav-glass.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+  }
+}
+
+/* Print Optimization (Enhanced) */
 @media print {
-  /* Reset colors for print */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
+  .print\:hidden { display: none !important; }
+  .print\:text-black { color: #000000 !important; }
+  .print\:text-gray-800 { color: #1f2937 !important; }
+  .print\:text-gray-700 { color: #374151 !important; }
+  .print\:text-gray-600 { color: #4b5563 !important; }
+  .print\:bg-white { background-color: #ffffff !important; }
+  .print\:text-3xl { font-size: 1.875rem !important; line-height: 2.25rem !important; }
+  .print\:text-xl { font-size: 1.25rem !important; line-height: 1.75rem !important; }
+  .print\:text-lg { font-size: 1.125rem !important; line-height: 1.75rem !important; }
+  .print\:prose-sm { font-size: 0.875rem !important; line-height: 1.5 !important; }
+  .print\:prose-black * { color: #000000 !important; }
+  .print\:mb-6 { margin-bottom: 1.5rem !important; }
+  .print\:mb-4 { margin-bottom: 1rem !important; }
+  .print\:break-inside-avoid { break-inside: avoid !important; page-break-inside: avoid !important; }
+  .print\:break-after-avoid { break-after: avoid !important; page-break-after: avoid !important; }
+  
+  @page { margin: 0.5in; size: A4; }
+  * { -webkit-print-color-adjust: exact !important; color-adjust: exact !important; }
+  .shadow, .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
+  .bg-gray-50, .dark\:bg-gray-800 { background-color: transparent !important; }
+}
 
-  /* Page setup */
-  @page {
-    margin: 0.5in;
-    size: A4;
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+}
 
-  /* Hide non-essential elements */
-  .print\:hidden {
-    display: none !important;
-  }
+/* Focus States for Accessibility */
+.focus\:ring-teal:focus {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
 
-  /* Text color overrides for print */
-  .print\:text-black {
-    color: #000000 !important;
-  }
+.focus\:ring-orange:focus {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
 
-  .print\:text-gray-800 {
-    color: #1f2937 !important;
-  }
+/* Selection Colors */
+::selection {
+  background: var(--color-teal);
+  color: white;
+}
 
-  .print\:text-gray-700 {
-    color: #374151 !important;
-  }
-
-  .print\:text-gray-600 {
-    color: #4b5563 !important;
-  }
-
-  /* Background color overrides */
-  .print\:bg-white {
-    background-color: #ffffff !important;
-  }
-
-  /* Typography adjustments */
-  .print\:text-3xl {
-    font-size: 1.875rem !important;
-    line-height: 2.25rem !important;
-  }
-
-  .print\:text-xl {
-    font-size: 1.25rem !important;
-    line-height: 1.75rem !important;
-  }
-
-  .print\:text-lg {
-    font-size: 1.125rem !important;
-    line-height: 1.75rem !important;
-  }
-
-  .print\:prose-sm {
-    font-size: 0.875rem !important;
-    line-height: 1.5 !important;
-  }
-
-  .print\:prose-black * {
-    color: #000000 !important;
-  }
-
-  /* Spacing adjustments */
-  .print\:mb-6 {
-    margin-bottom: 1.5rem !important;
-  }
-
-  .print\:mb-4 {
-    margin-bottom: 1rem !important;
-  }
-
-  .print\:mt-8 {
-    margin-top: 2rem !important;
-  }
-
-  /* Page break controls */
-  .print\:break-inside-avoid {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  .print\:break-after-avoid {
-    break-after: avoid !important;
-    page-break-after: avoid !important;
-  }
-
-  .print\:break-before-always {
-    break-before: always !important;
-    page-break-before: always !important;
-  }
-
-  /* Remove shadows and borders that don't print well */
-  .shadow,
-  .shadow-sm,
-  .shadow-md,
-  .shadow-lg {
-    box-shadow: none !important;
-  }
-
-  .border {
-    border: 1px solid #e5e7eb !important;
-  }
-
-  /* Ensure links are visible in print */
-  a {
-    color: #1f2937 !important;
-    text-decoration: underline;
-  }
-
-  /* Remove unnecessary backgrounds */
-  .bg-gray-50,
-  .dark\:bg-gray-800 {
-    background-color: transparent !important;
-  }
-
-  /* Font size adjustments for better print readability */
-  h1 {
-    font-size: 1.875rem !important;
-    margin-bottom: 1rem !important;
-  }
-
-  h2 {
-    font-size: 1.5rem !important;
-    margin-top: 1.5rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  h3 {
-    font-size: 1.25rem !important;
-    margin-top: 1rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-
-  p {
-    margin-bottom: 0.75rem !important;
-  }
-
-  ul {
-    margin-bottom: 1rem !important;
-  }
-
-  li {
-    margin-bottom: 0.25rem !important;
-  }
+::-moz-selection {
+  background: var(--color-teal);
+  color: white;
 }
