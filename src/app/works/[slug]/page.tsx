@@ -97,6 +97,117 @@ DNAを用いた合成分子ロボットの設計・開発を行い、分子レ�
     teamSize: 1,
     duration: '3ヶ月'
   },
+  // === 新規追加プロジェクト ===
+  'react-movie-search': {
+    id: 'react-movie-search',
+    title: 'React映画検索サイト',
+    description: 'The Movie Database (TMDb) APIを活用したReact製の映画検索・詳細閲覧サイト。レスポンシブデザインとスムーズなアニメーション実装。',
+    longDescription: `The Movie Database (TMDb) APIを活用して、映画の検索・詳細閲覧ができるWebアプリケーションをReactで開発しました。
+
+ユーザーはキーワードで映画を検索し、ポスター画像、あらすじ、キャスト情報、評価などの詳細情報を確認できます。人気映画やジャンル別の映画一覧表示機能も実装しました。
+
+モダンなUI/UXデザインとレスポンシブレイアウトを採用し、デスクトップからモバイルまで快適な閲覧体験を提供します。`,
+    category: 'Web Development',
+    tags: ['React', 'JavaScript', 'TMDb API', 'Responsive Design', 'SPA'],
+    year: '2020',
+    status: 'completed',
+    technologies: ['React', 'JavaScript', 'CSS3', 'REST API', 'Responsive Design'],
+    achievements: [
+      'TMDb APIの効率的な活用',
+      'レスポンシブデザインの実装',
+      'スムーズなアニメーション効果の実現'
+    ],
+    teamSize: 1,
+    duration: '2週間'
+  },
+  'face-hiding-linebot': {
+    id: 'face-hiding-linebot',
+    title: '顔隠しLinebot',
+    description: '送信された画像の顔部分を自動で検出し、スタンプやモザイクで隠すLINE Bot。プライバシー保護を簡単に。',
+    longDescription: `顔認識技術を活用して、LINEで送信された画像の顔部分を自動で隠すBotを開発しました。
+
+OpenCVとdlibライブラリを使用した顔検出により、複数人の顔を同時に認識し、かわいいスタンプやモザイク、ぼかし効果などで顔部分をマスキングします。LINE Messaging APIと連携し、簡単な操作で利用できます。
+
+SNS投稿時のプライバシー保護や、子供の写真の安全な共有などに活用でき、ユーザーの個人情報保護意識の高まりに対応したサービスです。`,
+    category: 'AI/ML',
+    tags: ['LINE Bot', 'OpenCV', 'Face Detection', 'Privacy Protection', 'Python'],
+    year: '2019',
+    status: 'completed',
+    technologies: ['Python', 'OpenCV', 'dlib', 'LINE Messaging API', 'Flask'],
+    achievements: [
+      '高精度な顔検出システムの実装',
+      'LINE Messaging API連携',
+      'リアルタイム画像処理の最適化'
+    ],
+    teamSize: 2,
+    duration: '1ヶ月'
+  },
+  'drawing-process-video': {
+    id: 'drawing-process-video',
+    title: '絵描き過程動画サービス',
+    description: 'イラスト制作過程を自動録画し、タイムラプス動画として出力するWebサービス。クリエイターの作業工程を可視化。',
+    longDescription: `デジタルイラスト制作の過程を自動で録画し、タイムラプス動画として出力するWebサービスを開発しました。
+
+Canvas APIを活用したリアルタイム描画キャプチャ機能により、ブラシストローク、色選択、レイヤー操作などの制作過程を詳細に記録します。録画データは効率的に圧縮され、美しいタイムラプス動画として出力されます。
+
+SNSでの作品投稿時に制作過程を併せて公開することで、クリエイターの技術や創作プロセスをファンと共有でき、エンゲージメント向上に寄与します。`,
+    category: 'Web Development',
+    tags: ['Canvas API', 'Video Processing', 'Creative Tools', 'JavaScript', 'WebRTC'],
+    year: '2020',
+    status: 'completed',
+    technologies: ['JavaScript', 'Canvas API', 'WebRTC', 'FFmpeg', 'Node.js'],
+    achievements: [
+      'リアルタイム描画キャプチャシステム',
+      '効率的な動画圧縮アルゴリズム',
+      'クリエイター向けツールの設計'
+    ],
+    teamSize: 3,
+    duration: '2ヶ月'
+  },
+  'text-to-gif-service': {
+    id: 'text-to-gif-service',
+    title: '文字入力GIFサービス',
+    description: '入力されたテキストを様々なスタイルのアニメーション文字GIFに変換するWebサービス。タイピング効果やフェード効果など多彩。',
+    longDescription: `ユーザーが入力したテキストを、様々なアニメーション効果付きのGIF画像に変換するWebサービスを開発しました。
+
+タイピング効果、フェードイン・アウト、回転、バウンス、ネオン効果など、豊富なアニメーションスタイルを提供します。フォント、色、背景、速度などのカスタマイズも可能で、SNSやメッセージアプリで使用できる個性的なGIFを簡単に作成できます。
+
+Canvas APIとWebGL技術を活用し、ブラウザ上でリアルタイムにアニメーションをレンダリングし、最適化されたGIFファイルとして出力します。`,
+    category: 'Web Development',
+    tags: ['GIF Generation', 'Animation', 'Canvas API', 'WebGL', 'Text Processing'],
+    year: '2019',
+    status: 'completed',
+    technologies: ['JavaScript', 'Canvas API', 'WebGL', 'GIF.js', 'CSS Animations'],
+    achievements: [
+      '多彩なテキストアニメーション効果',
+      '高効率なGIF生成システム',
+      'リアルタイムプレビュー機能'
+    ],
+    teamSize: 2,
+    duration: '3週間'
+  },
+  'twitter-sentiment-analyzer': {
+    id: 'twitter-sentiment-analyzer',
+    title: 'Twitter感情値判定サービス',
+    description: 'Twitterの投稿内容から感情を分析し、ポジティブ・ネガティブ・ニュートラルに分類するWebアプリ。自然言語処理技術を活用。',
+    longDescription: `自然言語処理技術を活用して、Twitterの投稿内容から感情を分析するWebアプリケーションを開発しました。
+
+MeCabによる形態素解析と感情辞書を組み合わせ、日本語ツイートの感情値（ポジティブ・ネガティブ・ニュートラル）を高精度で判定します。ユーザー名やハッシュタグを指定した感情分析、時系列での感情変化の可視化も可能です。
+
+企業のブランドモニタリングや個人のSNS投稿の振り返り、感情の可視化による心理的な気づきなど、様々な用途で活用できるツールです。`,
+    category: 'AI/ML',
+    tags: ['NLP', 'Sentiment Analysis', 'Twitter API', 'MeCab', 'Data Visualization'],
+    year: '2018',
+    status: 'completed',
+    technologies: ['Python', 'MeCab', 'Twitter API', 'scikit-learn', 'D3.js'],
+    achievements: [
+      '日本語感情分析システムの構築',
+      'Twitter API v2の効率的な活用',
+      'インタラクティブな感情可視化'
+    ],
+    teamSize: 2,
+    duration: '1ヶ月'
+  },
   'face-swap-app': {
     id: 'face-swap-app',
     title: '顔入れ替え権利売買アプリ',
