@@ -12,10 +12,10 @@ const Glass = forwardRef<HTMLDivElement, GlassProps>(
     const baseClasses = 'backdrop-filter backdrop-blur-lg border'
     
     const variants = {
-      light: 'bg-white/20 border-white/30 text-gray-900 dark:text-white',
-      dark: 'bg-black/20 border-white/20 text-white',
-      teal: 'bg-teal-500/20 border-teal-300/40 text-teal-900 dark:text-teal-100',
-      orange: 'bg-orange-500/20 border-orange-300/40 text-orange-900 dark:text-orange-100'
+      light: 'bg-white/75 border-white/50 text-gray-900 dark:bg-black/75 dark:border-white/30 dark:text-white',
+      dark: 'bg-black/60 border-white/30 text-white',
+      teal: 'bg-teal-500/80 border-teal-300/60 text-white',
+      orange: 'bg-orange-500/80 border-orange-300/60 text-white'
     }
     
     const blurLevels = {
@@ -52,7 +52,7 @@ const GlassContainer = forwardRef<HTMLDivElement, GlassContainerProps>(
     return (
       <div
         ref={ref}
-        className={cn('glass rounded-xl p-6', className)}
+        className={cn('glass-light rounded-xl p-6', className)}
         {...props}
       >
         {children}
