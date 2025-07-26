@@ -52,8 +52,8 @@ const featuredPosts: BlogPost[] = [
 const categoryColors: Record<string, string> = {
   'Innovation': 'bg-gradient-orange text-white',
   'Education': 'bg-gradient-teal text-white', 
-  'Research': 'bg-purple-500 text-white',
-  'Technology': 'bg-blue-500 text-white'
+  'Research': 'bg-purple-600 text-white',
+  'Technology': 'bg-blue-600 text-white'
 }
 
 function BlogCard({ post, index }: { post: BlogPost; index: number }) {
@@ -71,13 +71,13 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between mb-3">
           <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-            categoryColors[post.category] || 'bg-gray-500 text-white'
+            categoryColors[post.category] || 'bg-gray-600 text-white'
           }`}>
             {post.category}
           </span>
-          <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400">
+          <div className="flex items-center gap-2 text-sm text-amber-700 dark:text-amber-300 font-medium">
             <span>⏱</span>
-            <span className="font-medium">{post.readingTime}</span>
+            <span>{post.readingTime}</span>
           </div>
         </div>
         
@@ -89,7 +89,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           </h3>
         </Link>
         
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
           {new Date(post.date).toLocaleDateString('ja-JP', {
             year: 'numeric',
             month: 'long', 
@@ -99,7 +99,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
       </CardHeader>
       
       <CardContent className="pt-0 flex flex-col h-full">
-        <p className={`text-gray-600 dark:text-gray-300 mb-4 flex-1 ${
+        <p className={`text-gray-700 dark:text-gray-200 mb-4 flex-1 ${
           isLarge ? 'text-base leading-relaxed' : 'text-sm'
         }`}>
           {post.excerpt}
@@ -110,7 +110,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           {post.tags.slice(0, isLarge ? 4 : 3).map((tag, tagIndex) => (
             <span 
               key={tag}
-              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors"
+              className="px-2 py-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 text-xs rounded-md hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors font-medium"
               style={{ animationDelay: `${tagIndex * 0.1}s` }}
             >
               #{tag}
@@ -141,7 +141,7 @@ export function BlogPreview() {
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Latest <span className="text-gradient-orange">Insights</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto">
             Sharing experiences from hackathons, research breakthroughs, and the journey 
             of building AI-powered innovations in the real world.
           </p>
@@ -164,17 +164,17 @@ export function BlogPreview() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Newsletter */}
           <Glass variant="teal" className="p-8 text-center">
-            <h3 className="text-xl font-semibold mb-4">
+            <h3 className="text-xl font-semibold mb-4 text-white">
               📬 Stay Updated
             </h3>
-            <p className="text-teal-100 mb-6">
+            <p className="text-teal-50 mb-6 font-medium">
               Get notified when I publish new insights about AI, innovation, and technology.
             </p>
             <div className="flex gap-3">
               <input 
                 type="email" 
                 placeholder="your@email.com"
-                className="flex-1 px-4 py-2 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="flex-1 px-4 py-2 rounded-lg bg-white/20 border border-white/40 text-white placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 font-medium"
               />
               <StaticButton variant="glass" size="md">
                 Subscribe
@@ -187,7 +187,7 @@ export function BlogPreview() {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               📚 Explore All Posts
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
+            <p className="text-gray-700 dark:text-gray-200 mb-6 font-medium">
               Dive deeper into my complete collection of articles, tutorials, and project stories.
             </p>
             <StaticButton variant="primary" size="lg" href="/blog">
