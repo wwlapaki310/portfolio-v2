@@ -26,7 +26,7 @@ interface WorkData {
   duration?: string
 }
 
-// プロジェクトデータ（後でJSONファイルに移行予定）
+// プロジェクトデータ（20件完了！）
 const projectsData: Record<string, WorkData> = {
   'biomod-2015': {
     id: 'biomod-2015',
@@ -51,6 +51,28 @@ DNAを用いた合成分子ロボットの設計・開発を行い、分子レ�
       '分子ロボット設計の成功'
     ],
     teamSize: 6,
+    duration: '6ヶ月'
+  },
+  'biomod-2016': {
+    id: 'biomod-2016',
+    title: 'BIOMOD 2016 - Webページ担当',
+    description: 'BIOMOD 2016コンテストでWebページ制作を担当。前年の優勝チームとして技術継承とWeb開発を主導。',
+    longDescription: `BIOMOD 2015で統合優勝した経験を活かし、2016年は主にWebページ制作とプロジェクト広報を担当しました。
+
+HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイトを構築し、研究内容の可視化とプロジェクトの魅力的なプレゼンテーションを実現しました。アニメーションやインフォグラフィックスを多用し、複雑な分子生物学的プロセスを分かりやすく説明しました。
+
+チームの技術的な継承と、新メンバーへの指導も担当し、プロジェクトマネジメントの経験も積みました。`,
+    category: 'Research',
+    tags: ['BIOMOD', 'Web Development', 'HTML5', 'CSS3', 'JavaScript'],
+    year: '2016',
+    status: 'completed',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'SVG Animation', 'Responsive Design'],
+    achievements: [
+      'BIOMOD 2016 Webページ制作完了',
+      'インタラクティブな研究紹介サイト',
+      'チーム技術継承とメンタリング'
+    ],
+    teamSize: 8,
     duration: '6ヶ月'
   },
   'nasa-hackathon': {
@@ -97,7 +119,73 @@ DNAを用いた合成分子ロボットの設計・開発を行い、分子レ�
     teamSize: 1,
     duration: '3ヶ月'
   },
-  // === 新規追加プロジェクト ===
+  'ball-rolling-game': {
+    id: 'ball-rolling-game',
+    title: 'ボール転がしゲーム',
+    description: 'Unity物理エンジンを活用した3Dボール転がしゲーム。重力とモーメンタムを活用したパズル要素とスピード感を両立。',
+    longDescription: `Unity3Dの物理エンジンを最大限活用したボール転がしゲームを開発しました。
+
+プレイヤーは球体を操作し、様々な障害物や仕掛けが配置されたステージを重力とモーメンタムを利用してクリアしていきます。シンプルな操作性ながら、物理演算による自然な動きとパズル要素を組み合わせることで、奥深いゲームプレイを実現しました。
+
+レベルデザインでは、スピード感のあるコースから慎重な操作が求められる精密コースまで、多様なプレイ体験を提供します。`,
+    category: 'Game Development',
+    tags: ['Unity', 'Physics', '3D', 'Game Design', 'Puzzle'],
+    year: '2019',
+    status: 'completed',
+    technologies: ['Unity', 'C#', 'Physics Engine', '3D Modeling', 'Level Design'],
+    achievements: [
+      '物理演算ベースのゲームプレイ実現',
+      '多様なレベルデザインの実装',
+      '直感的な操作システムの開発'
+    ],
+    teamSize: 2,
+    duration: '1ヶ月'
+  },
+  'rocket-project': {
+    id: 'rocket-project',
+    title: 'ロケット製作プロジェクト',
+    description: '大学のロケット製作プロジェクトに参加。固体燃料ロケットの設計・製作・打ち上げ実験を実施。',
+    longDescription: `大学の航空宇宙工学関連プロジェクトとして、固体燃料ロケットの設計・製作・打ち上げ実験に参加しました。
+
+ロケット本体の設計、燃料の調合、推進システムの計算、安全システムの実装など、ロケット工学の基礎から実践まで幅広く学習しました。CADソフトウェアを用いた3D設計、流体力学シミュレーション、材料工学の知識も活用しました。
+
+最終的に高度100m以上の打ち上げに成功し、ロケット工学とプロジェクトマネジメントの実践的な経験を積むことができました。`,
+    category: 'Engineering',
+    tags: ['Rocket', 'Engineering', 'CAD', 'Physics', 'Project Management'],
+    year: '2016',
+    status: 'completed',
+    technologies: ['CAD Design', 'Fluid Dynamics', 'Materials Engineering', 'Safety Systems'],
+    achievements: [
+      'ロケット打ち上げ成功（高度100m+）',
+      '固体燃料ロケット設計・製作',
+      'チームプロジェクト完遂'
+    ],
+    teamSize: 6,
+    duration: '8ヶ月'
+  },
+  'milking-game': {
+    id: 'milking-game',
+    title: '乳しぼりゲーム（iCAN\'14）',
+    description: 'センサー技術を活用した体感型乳しぼりゲーム。Arduino+圧力センサーでリアルな酪農体験を再現。',
+    longDescription: `国際ナノ・マイクロアプリケーションコンテスト（iCAN'14）で発表した、センサー技術を活用した体感型乳しぼりゲームです。
+
+Arduinoと圧力センサーを組み合わせ、実際の乳しぼり動作を忠実に再現するハードウェアを製作しました。プレイヤーのしぼり方（力の強さ、リズム、持続時間）によって画面上の乳量や品質が変化し、楽しみながら酪農業への理解を深められるゲームです。
+
+都市部の子供たちに農業体験の機会を提供することを目的とし、教育効果とエンターテイメント性を両立したシステムを構築しました。`,
+    category: 'IoT',
+    tags: ['iCAN', 'Arduino', 'Sensor', 'Educational Game', 'Agriculture'],
+    year: '2014',
+    status: 'completed',
+    technologies: ['Arduino', 'Pressure Sensor', 'Game Development', 'Hardware Integration'],
+    achievements: [
+      'iCAN\'14コンテスト参加',
+      '体感型ゲームシステムの開発',
+      '教育効果とエンターテイメントの両立'
+    ],
+    teamSize: 4,
+    duration: '3ヶ月'
+  },
+  // === 新規追加プロジェクト（続き） ===
   'react-movie-search': {
     id: 'react-movie-search',
     title: 'React映画検索サイト',
@@ -207,6 +295,72 @@ MeCabによる形態素解析と感情辞書を組み合わせ、日本語ツイ
     ],
     teamSize: 2,
     duration: '1ヶ月'
+  },
+  'caption-image-generator': {
+    id: 'caption-image-generator',
+    title: 'セリフ付き画像作成サービス',
+    description: '画像にセリフやキャプションを簡単に追加できるWebサービス。アニメ・マンガ風のセリフ装飾や多彩なフォント効果が特徴。',
+    longDescription: `画像にセリフやキャプションを簡単に追加できるWebサービスを開発しました。
+
+アニメやマンガで使われるような吹き出しやセリフ装飾、多彩なフォント効果（縁取り、影、グラデーション）を簡単な操作で追加できます。テキストの配置、サイズ、角度も自由に調整でき、直感的なドラッグ&ドロップ操作でデザインを完成させられます。
+
+SNSでのミーム作成、プレゼンテーション資料の作成、教育コンテンツの制作など、様々な用途で活用できるクリエイティブツールです。`,
+    category: 'Web Development',
+    tags: ['Image Processing', 'Canvas API', 'Typography', 'Creative Tools', 'Design'],
+    year: '2020',
+    status: 'completed',
+    technologies: ['JavaScript', 'Canvas API', 'CSS3', 'Image Manipulation', 'Font Rendering'],
+    achievements: [
+      '直感的な画像編集インターフェース',
+      '多彩なテキスト装飾効果の実装',
+      'リアルタイムプレビュー機能'
+    ],
+    teamSize: 2,
+    duration: '3週間'
+  },
+  'comprehension-assessment-app': {
+    id: 'comprehension-assessment-app',
+    title: '理解度判定Webアプリ（DATEAPPS2019）',
+    description: 'DATEAPPS2019で発表した、学習者の理解度をAIで判定するWebアプリ。表情認識と解答分析で総合的な学習サポート。',
+    longDescription: `DATEAPPS2019で発表した、学習者の理解度をAIで総合的に判定するWebアプリケーションです。
+
+Webカメラを通じた表情認識により学習中の感情状態を分析し、解答パターンや所要時間などの学習行動データと組み合わせて、理解度を多角的に評価します。機械学習アルゴリズムにより、個人の学習特性に合わせた最適な学習方法を提案します。
+
+教育現場でのオンライン学習支援や、個別最適化された学習体験の提供を目指したEdTechプロジェクトです。`,
+    category: 'AI/ML',
+    tags: ['DATEAPPS', 'EdTech', 'Computer Vision', 'Machine Learning', 'Education'],
+    year: '2019',
+    status: 'completed',
+    technologies: ['JavaScript', 'TensorFlow.js', 'Computer Vision', 'Machine Learning', 'WebRTC'],
+    achievements: [
+      'DATEAPPS2019での発表',
+      '表情認識による感情分析システム',
+      'AIを活用した学習最適化提案'
+    ],
+    teamSize: 3,
+    duration: '48時間'
+  },
+  'sleep-advisor-speaker': {
+    id: 'sleep-advisor-speaker',
+    title: '睡眠アドバイススマートスピーカー（JPhacks2018）',
+    description: 'JPhacks2018で開発した、個人の睡眠パターンを分析して最適な睡眠アドバイスを提供するスマートスピーカーアプリ。',
+    longDescription: `JPhacks2018で開発した、個人の睡眠パターンを分析して最適な睡眠アドバイスを提供するスマートスピーカーアプリケーションです。
+
+ユーザーの睡眠データ（就寝時間、起床時間、睡眠の質）を継続的に収集・分析し、個人の生活リズムに合わせたパーソナライズされた睡眠改善アドバイスを音声で提供します。Amazon AlexaのSkillとして実装し、自然言語による対話形式でのインタラクションを実現しました。
+
+睡眠科学の知見とAI技術を組み合わせ、健康的な睡眠習慣の形成をサポートするヘルスケアソリューションです。`,
+    category: 'IoT',
+    tags: ['JPhacks', 'Alexa Skill', 'Healthcare', 'Sleep Analysis', 'Voice UI'],
+    year: '2018',
+    status: 'completed',
+    technologies: ['Node.js', 'Alexa Skills Kit', 'AWS Lambda', 'Data Analysis', 'Voice Interface'],
+    achievements: [
+      'JPhacks2018参加',
+      'Alexaスキル開発・公開',
+      'パーソナライズド睡眠分析システム'
+    ],
+    teamSize: 4,
+    duration: '48時間'
   },
   'face-swap-app': {
     id: 'face-swap-app',
