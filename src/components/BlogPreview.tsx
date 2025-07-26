@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Card, CardContent, CardHeader } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+import { StaticButton } from '@/components/ui/Button'
 import { Glass } from '@/components/ui/Glass'
 
 interface BlogPost {
@@ -118,15 +118,15 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           ))}
         </div>
         
-        <Button 
+        <StaticButton 
           variant="ghost" 
           size={isLarge ? 'md' : 'sm'}
-          className="self-start mt-auto group/btn"
+          className="self-start mt-auto"
           href={`/blog/${post.slug}`}
         >
           <span>Read More</span>
-          <span className="ml-2 group-hover/btn:translate-x-1 transition-transform">📖</span>
-        </Button>
+          <span className="ml-2">📖</span>
+        </StaticButton>
       </CardContent>
     </Card>
   )
@@ -176,9 +176,9 @@ export function BlogPreview() {
                 placeholder="your@email.com"
                 className="flex-1 px-4 py-2 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
               />
-              <Button variant="glass" size="md">
+              <StaticButton variant="glass" size="md">
                 Subscribe
-              </Button>
+              </StaticButton>
             </div>
           </Glass>
 
@@ -190,9 +190,9 @@ export function BlogPreview() {
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Dive deeper into my complete collection of articles, tutorials, and project stories.
             </p>
-            <Button variant="primary" size="lg" href="/blog">
+            <StaticButton variant="primary" size="lg" href="/blog">
               View All Articles
-            </Button>
+            </StaticButton>
           </Glass>
         </div>
       </div>
