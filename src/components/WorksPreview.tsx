@@ -78,7 +78,7 @@ function WorkCard({ work }: { work: Work }) {
           <span className="px-3 py-1 bg-gradient-teal text-white text-xs font-medium rounded-full">
             {work.category}
           </span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
+          <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
             {work.year}
           </span>
         </div>
@@ -91,7 +91,7 @@ function WorkCard({ work }: { work: Work }) {
       </CardHeader>
       
       <CardContent className="pt-0 flex flex-col h-full">
-        <p className={`text-gray-600 dark:text-gray-300 mb-4 flex-1 ${
+        <p className={`text-gray-700 dark:text-gray-200 mb-4 flex-1 ${
           isFeatured ? 'text-base leading-relaxed' : 'text-sm'
         }`}>
           {work.description}
@@ -102,7 +102,7 @@ function WorkCard({ work }: { work: Work }) {
           {work.tech.map((tech, index) => (
             <span 
               key={tech}
-              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
+              className="px-2 py-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 text-xs rounded-md font-medium"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {tech}
@@ -135,7 +135,7 @@ export function WorksPreview() {
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Featured <span className="text-gradient-teal">Works</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto">
             From molecular robotics to AI-powered applications, explore the projects 
             that showcase innovation at the intersection of hardware and software.
           </p>
@@ -160,7 +160,7 @@ export function WorksPreview() {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Interested in seeing more?
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
+            <p className="text-gray-700 dark:text-gray-200 mb-6 font-medium">
               Explore my complete portfolio of projects, research, and innovations.
             </p>
             <StaticButton variant="primary" size="lg" href="/works">
