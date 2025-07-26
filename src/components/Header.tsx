@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GlassNav } from '@/components/ui/Glass'
-import { Button } from '@/components/ui/Button'
+import { StaticButton } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
 const navigation = [
@@ -70,13 +70,13 @@ export function Header() {
 
           {/* CTA Button & Theme Toggle */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button 
+            <StaticButton 
               variant="ghost" 
               size="sm"
               className="text-sm"
             >
               Contact
-            </Button>
+            </StaticButton>
             
             {/* Theme Toggle Button */}
             <button
@@ -138,9 +138,9 @@ export function Header() {
           })}
           
           <div className="flex items-center justify-between pt-4 border-t border-white/20">
-            <Button variant="glass" size="sm" className="flex-1 mr-2">
+            <StaticButton variant="glass" size="sm" className="flex-1 mr-2">
               Contact
-            </Button>
+            </StaticButton>
             <button
               className="p-3 rounded-lg glass hover-lift"
               aria-label="Toggle theme"
