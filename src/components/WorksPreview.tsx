@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Card, CardContent, CardHeader } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+import { StaticButton } from '@/components/ui/Button'
 import { Glass } from '@/components/ui/Glass'
 
 interface Work {
@@ -111,15 +111,15 @@ function WorkCard({ work }: { work: Work }) {
         </div>
         
         {work.link && (
-          <Button 
+          <StaticButton 
             variant="ghost" 
             size={isFeatured ? 'md' : 'sm'}
-            className="self-start mt-auto group/btn"
+            className="self-start mt-auto"
             href={work.link}
           >
             <span>View Project</span>
-            <span className="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
-          </Button>
+            <span className="ml-2">→</span>
+          </StaticButton>
         )}
       </CardContent>
     </Card>
@@ -163,28 +163,12 @@ export function WorksPreview() {
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Explore my complete portfolio of projects, research, and innovations.
             </p>
-            <Button variant="primary" size="lg" href="/works">
+            <StaticButton variant="primary" size="lg" href="/works">
               View All Projects
-            </Button>
+            </StaticButton>
           </Glass>
         </div>
       </div>
     </section>
   )
 }
-
-/* Add fadeInUp animation to globals.css */
-const additionalCSS = `
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-`
-
-export { additionalCSS }
