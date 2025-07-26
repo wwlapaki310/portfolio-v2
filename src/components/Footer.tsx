@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Glass } from '@/components/ui/Glass'
-import { Button } from '@/components/ui/Button'
+import { StaticButton } from '@/components/ui/Button'
 
 const navigation = [
   { name: 'About', href: '/about' },
@@ -101,9 +101,9 @@ export function Footer() {
                 </div>
                 
                 {/* CTA */}
-                <Button variant="primary" size="sm" className="w-full">
+                <StaticButton variant="primary" size="sm" className="w-full">
                   Get In Touch
-                </Button>
+                </StaticButton>
               </div>
             </div>
           </div>
@@ -126,12 +126,9 @@ export function Footer() {
               </div>
               
               {/* Theme Toggle */}
-              <button
-                className="p-2 glass rounded-lg hover-lift transition-all duration-300"
-                aria-label="Toggle theme"
-              >
+              <span className="p-2 glass rounded-lg">
                 <span className="text-lg">🌙</span>
-              </button>
+              </span>
             </div>
           </div>
         </div>
