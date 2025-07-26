@@ -363,7 +363,7 @@ body {
   .print\:break-after-avoid { break-after: avoid !important; page-break-after: avoid !important; }
   
   @page { margin: 0.5in; size: A4; }
-  * { -webkit-print-color-adjust: exact !important; color-adjust: exact !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   .shadow, .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
   .bg-gray-50, .dark\:bg-gray-800 { background-color: transparent !important; }
 }
