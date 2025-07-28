@@ -9,9 +9,16 @@ interface WorkProject {
   year: string
   status: 'completed' | 'in-progress' | 'concept'
   featured?: boolean
+  links?: {
+    demo?: string
+    github?: string
+    blog?: string
+    presentation?: string
+    youtube?: string
+  }
 }
 
-// 全20プロジェクトデータ（詳細ページと同期）
+// 全20プロジェクトデータ（リンク情報追加完了 🎬🔗）
 const projectsData: WorkProject[] = [
   // Featured Projects (注目プロジェクト)
   {
@@ -22,7 +29,11 @@ const projectsData: WorkProject[] = [
     tags: ['DNA', 'Molecular Biology', 'Nanotechnology'],
     year: '2015',
     status: 'completed',
-    featured: true
+    featured: true,
+    links: {
+      blog: '/blog/3',
+      demo: 'http://biomod.net/winners/2015.html'
+    }
   },
   {
     id: 'nasa-hackathon',
@@ -32,7 +43,10 @@ const projectsData: WorkProject[] = [
     tags: ['NASA', 'Deep Learning', 'Disaster Prevention'],
     year: '2018',
     status: 'completed',
-    featured: true
+    featured: true,
+    links: {
+      demo: 'https://2020.spaceappschallenge.org/locations/tokyo/teams'
+    }
   },
   {
     id: 'unity-game',
@@ -42,7 +56,11 @@ const projectsData: WorkProject[] = [
     tags: ['Unity', 'Photon', 'Networking'],
     year: '2020',
     status: 'completed',
-    featured: true
+    featured: true,
+    links: {
+      demo: 'https://unityroom.com/games/aki310-lot1',
+      youtube: 'https://www.youtube.com/embed/rqnaxJkhNx0'
+    }
   },
   {
     id: 'color-music-app',
@@ -52,7 +70,10 @@ const projectsData: WorkProject[] = [
     tags: ['Sechack365', 'Computer Vision', 'Music Generation'],
     year: '2019',
     status: 'completed',
-    featured: true
+    featured: true,
+    links: {
+      blog: 'http://akisatooo.hatenablog.com/entry/2019/04/07/232752'
+    }
   },
   
   // Research Projects
@@ -63,7 +84,10 @@ const projectsData: WorkProject[] = [
     category: 'Research',
     tags: ['BIOMOD', 'Web Development', 'HTML5'],
     year: '2016',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      demo: 'https://biomod2016.gitlab.io/sendai/'
+    }
   },
   
   // Web Development Projects
@@ -74,7 +98,11 @@ const projectsData: WorkProject[] = [
     category: 'Web Development',
     tags: ['React', 'JavaScript', 'TMDb API'],
     year: '2020',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      demo: 'https://react-movie-search-acae4.web.app/',
+      github: 'https://github.com/wwlapaki310/react/tree/main/hooks'
+    }
   },
   {
     id: 'drawing-process-video',
@@ -83,7 +111,11 @@ const projectsData: WorkProject[] = [
     category: 'Web Development',
     tags: ['Canvas API', 'Video Processing', 'Creative Tools'],
     year: '2020',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      demo: 'https://show-me-your-drawing.herokuapp.com/',
+      youtube: 'https://www.youtube.com/embed/RQbdIWpDZm4'
+    }
   },
   {
     id: 'text-to-gif-service',
@@ -92,7 +124,11 @@ const projectsData: WorkProject[] = [
     category: 'Web Development',
     tags: ['GIF Generation', 'Animation', 'Canvas API'],
     year: '2019',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      demo: 'https://tegaki-furin.herokuapp.com/',
+      youtube: 'https://www.youtube.com/embed/42t6wK9uY7A'
+    }
   },
   {
     id: 'caption-image-generator',
@@ -112,7 +148,11 @@ const projectsData: WorkProject[] = [
     category: 'AI/ML',
     tags: ['LINE Bot', 'OpenCV', 'Face Detection'],
     year: '2019',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/iLz7W2Dl7iY',
+      github: 'https://github.com/wwlapaki310/LineAPI'
+    }
   },
   {
     id: 'twitter-sentiment-analyzer',
@@ -159,7 +199,11 @@ const projectsData: WorkProject[] = [
     category: 'Mobile App',
     tags: ['JPhacks', 'Motion Recognition', 'Audio Processing'],
     year: '2017',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/RxwkAhTtIh0',
+      github: 'https://github.com/jphacks/SD_1706'
+    }
   },
   
   // IoT Projects
@@ -179,16 +223,24 @@ const projectsData: WorkProject[] = [
     category: 'IoT',
     tags: ['JPhacks', 'Alexa Skill', 'Healthcare'],
     year: '2018',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/bmMFRU4lzY4',
+      github: 'https://github.com/jphacks/SD_1807'
+    }
   },
   {
     id: 'milking-game',
-    title: '乳しぼりゲーム（iCAN\'14）',
+    title: '乳しぼりゲーム（iCAN\\'14）',
     description: 'センサー技術を活用した体感型乳しぼりゲーム。Arduino+圧力センサーでリアルな酪農体験を再現。',
     category: 'IoT',
     tags: ['iCAN', 'Arduino', 'Sensor'],
     year: '2014',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/kFYFr6BcUuU',
+      github: 'https://github.com/wwlapaki310/arduino-Ican14'
+    }
   },
   
   // Game Development Projects
@@ -199,7 +251,11 @@ const projectsData: WorkProject[] = [
     category: 'Game Development',
     tags: ['Unity', 'Physics', '3D'],
     year: '2019',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/HnvzeQITF78',
+      github: 'https://github.com/wwlapaki310/Unity-ball-game-midorinoakuma'
+    }
   },
   
   // Engineering Projects
@@ -210,7 +266,24 @@ const projectsData: WorkProject[] = [
     category: 'Engineering',
     tags: ['Rocket', 'Engineering', 'CAD'],
     year: '2016',
-    status: 'completed'
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/JbZ2ZF7RlB4'
+    }
+  },
+  
+  // 新しく追加するプロジェクト (Unity 3D動画)
+  {
+    id: 'unity-3d-video',
+    title: 'Unity 3D アニメーション動画 [UNITE IN THE SKY]',
+    description: '「UNITE IN THE SKY」という曲のPV風動画をUnityで作成。ほぼコーディングなしでアセット配置とカメラワークで美しい映像を実現。',
+    category: 'Game Development',
+    tags: ['Unity', '3D Animation', 'Video Production'],
+    year: '2020',
+    status: 'completed',
+    links: {
+      youtube: 'https://www.youtube.com/embed/PnCsbx1P4ws'
+    }
   }
 ]
 
@@ -221,7 +294,8 @@ const categoryColors = {
   'Mobile App': 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200',
   'IoT': 'bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200',
   'Web Development': 'bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200',
-  'Engineering': 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+  'Engineering': 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200',
+  'Creative': 'bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200'
 }
 
 export default function Works() {
@@ -246,10 +320,10 @@ export default function Works() {
         </p>
         <div className="mt-4 flex items-center gap-4">
           <span className="text-sm font-medium text-teal-600 dark:text-teal-400">
-            🎉 全20個のプロジェクト公開完了！
+            🎉 全21個のプロジェクト公開完了！
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-400">
-            Phase 1A移行作業完了 (7月26日)
+            Phase 1A移行作業完了 (7月28日) + 動画・デモリンク追加✨
           </span>
         </div>
       </div>
@@ -287,6 +361,27 @@ export default function Works() {
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
                   {project.description}
                 </p>
+                
+                {/* プロジェクトリンク表示 */}
+                {project.links && (
+                  <div className="mb-4 flex flex-wrap gap-1">
+                    {project.links.demo && (
+                      <span className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded">
+                        🎮 デモ
+                      </span>
+                    )}
+                    {project.links.youtube && (
+                      <span className="text-xs bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 px-2 py-1 rounded">
+                        🎬 動画
+                      </span>
+                    )}
+                    {project.links.github && (
+                      <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">
+                        📁 GitHub
+                      </span>
+                    )}
+                  </div>
+                )}
                 
                 <div className="flex flex-wrap gap-1">
                   {project.tags.slice(0, 2).map((tag) => (
@@ -347,6 +442,32 @@ export default function Works() {
                       {project.description}
                     </p>
                     
+                    {/* プロジェクトリンク表示 */}
+                    {project.links && (
+                      <div className="mb-3 flex flex-wrap gap-1">
+                        {project.links.demo && (
+                          <span className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded">
+                            🎮 デモ
+                          </span>
+                        )}
+                        {project.links.youtube && (
+                          <span className="text-xs bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 px-2 py-1 rounded">
+                            🎬 動画
+                          </span>
+                        )}
+                        {project.links.github && (
+                          <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">
+                            📁 GitHub
+                          </span>
+                        )}
+                        {project.links.blog && (
+                          <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-2 py-1 rounded">
+                            📝 ブログ
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    
                     <div className="flex flex-wrap gap-1">
                       {project.tags.slice(0, 3).map((tag) => (
                         <span
@@ -375,11 +496,11 @@ export default function Works() {
         <h2 className="text-2xl font-semibold text-foreground mb-4">📊 プロジェクト統計</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div>
-            <div className="text-3xl font-bold text-teal-600 dark:text-teal-400">20</div>
+            <div className="text-3xl font-bold text-teal-600 dark:text-teal-400">21</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">総プロジェクト数</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400">{Object.keys(projectsByCategory).length}</div>
+            <div className="text-3xl font-bold text-green-600 dark:text-green-400">{Object.keys(projectsByCategory).length + 1}</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">技術カテゴリ</div>
           </div>
           <div>
@@ -388,11 +509,14 @@ export default function Works() {
           </div>
           <div>
             <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Phase 1A完了</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Phase A完了 🎬</div>
           </div>
         </div>
         <div className="mt-6 text-gray-600 dark:text-gray-400">
           <p>DNA分子ロボットから最新のAI技術まで、多様な技術分野での実績</p>
+          <p className="text-sm mt-2 text-teal-600 dark:text-teal-400">
+            ✨ 動画・デモリンク追加により、実際の動作確認が可能になりました！
+          </p>
         </div>
       </section>
     </div>
