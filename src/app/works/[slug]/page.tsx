@@ -19,6 +19,7 @@ interface WorkData {
     github?: string
     blog?: string
     presentation?: string
+    youtube?: string
   }
   images?: string[]
   achievements?: string[]
@@ -26,7 +27,23 @@ interface WorkData {
   duration?: string
 }
 
-// プロジェクトデータ（20件完了！）
+// YouTube動画埋め込みコンポーネント
+function YouTubeEmbed({ videoId, title }: { videoId: string; title?: string }) {
+  return (
+    <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden shadow-lg">
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title || "YouTube video"}
+        className="absolute inset-0 w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  )
+}
+
+// プロジェクトデータ（20件完了！+ YouTube & デモリンク追加）
 const projectsData: Record<string, WorkData> = {
   'biomod-2015': {
     id: 'biomod-2015',
@@ -43,7 +60,8 @@ DNAを用いた合成分子ロボットの設計・開発を行い、分子レ�
     status: 'completed',
     technologies: ['DNA Design', 'Molecular Simulation', 'Web Development', 'Data Analysis'],
     links: {
-      blog: '/blog/3'
+      blog: '/blog/3',
+      demo: 'http://biomod.net/winners/2015.html'
     },
     achievements: [
       '国際生体分子設計コンテスト（BIOMOD 2015）統合優勝',
@@ -67,6 +85,9 @@ HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイト�
     year: '2016',
     status: 'completed',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'SVG Animation', 'Responsive Design'],
+    links: {
+      demo: 'https://biomod2016.gitlab.io/sendai/'
+    },
     achievements: [
       'BIOMOD 2016 Webページ制作完了',
       'インタラクティブな研究紹介サイト',
@@ -89,6 +110,9 @@ HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイト�
     year: '2018',
     status: 'completed',
     technologies: ['Python', 'TensorFlow', 'Geospatial Analysis', 'Satellite Data'],
+    links: {
+      demo: 'https://2020.spaceappschallenge.org/locations/tokyo/teams'
+    },
     achievements: [
       'NASA Space Apps Challenge 東京予選優勝',
       'AI災害予測システムの開発',
@@ -111,6 +135,10 @@ HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイト�
     year: '2020',
     status: 'completed',
     technologies: ['Unity', 'C#', 'Photon PUN2', 'Physics', '3D Modeling'],
+    links: {
+      demo: 'https://unityroom.com/games/aki310-lot1',
+      youtube: 'rqnaxJkhNx0'
+    },
     achievements: [
       'マルチプレイヤーゲームの完成',
       'ネットワーク同期システムの実装',
@@ -118,6 +146,31 @@ HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイト�
     ],
     teamSize: 1,
     duration: '3ヶ月'
+  },
+  'unity-3d-video': {
+    id: 'unity-3d-video',
+    title: 'Unity 3D アニメーション動画 [UNITE IN THE SKY]',
+    description: '「UNITE IN THE SKY」という曲のPV風動画をUnityで作成。ほぼコーディングなしでアセット配置とカメラワークで美しい映像を実現。',
+    longDescription: `「UNITE IN THE SKY」という楽曲のPV風動画をUnityで制作しました。
+
+アセットストアからダウンロードしたオブジェクトの配置とカメラワークの切り替えを中心に、ほぼコーディングなしで美しい映像作品を作成しました。20時間程度の制作期間で、Unityの映像制作ツールとしての可能性を探求しました。
+
+3Dアニメーション、ライティング、カメラワークなど、ゲーム開発以外でのUnity活用を実践したプロジェクトです。`,
+    category: 'Creative',
+    tags: ['Unity', '3D Animation', 'Video Production', 'Camera Work', 'Creative'],
+    year: '2020',
+    status: 'completed',
+    technologies: ['Unity', '3D Modeling', 'Animation', 'Video Editing', 'Asset Management'],
+    links: {
+      youtube: 'PnCsbx1P4ws'
+    },
+    achievements: [
+      'Unity映像制作ワークフローの確立',
+      '短期間での高品質動画制作',
+      'ゲームエンジンの映像制作活用'
+    ],
+    teamSize: 1,
+    duration: '20時間'
   },
   'ball-rolling-game': {
     id: 'ball-rolling-game',
@@ -133,6 +186,10 @@ HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイト�
     year: '2019',
     status: 'completed',
     technologies: ['Unity', 'C#', 'Physics Engine', '3D Modeling', 'Level Design'],
+    links: {
+      youtube: 'HnvzeQITF78',
+      github: 'https://github.com/wwlapaki310/Unity-ball-game-midorinoakuma'
+    },
     achievements: [
       '物理演算ベースのゲームプレイ実現',
       '多様なレベルデザインの実装',
@@ -155,6 +212,9 @@ HTML5、CSS3、JavaScriptを駆使したインタラクティブなWebサイト�
     year: '2016',
     status: 'completed',
     technologies: ['CAD Design', 'Fluid Dynamics', 'Materials Engineering', 'Safety Systems'],
+    links: {
+      youtube: 'JbZ2ZF7RlB4'
+    },
     achievements: [
       'ロケット打ち上げ成功（高度100m+）',
       '固体燃料ロケット設計・製作',
@@ -177,6 +237,10 @@ Arduinoと圧力センサーを組み合わせ、実際の乳しぼり動作を�
     year: '2014',
     status: 'completed',
     technologies: ['Arduino', 'Pressure Sensor', 'Game Development', 'Hardware Integration'],
+    links: {
+      youtube: 'kFYFr6BcUuU',
+      github: 'https://github.com/wwlapaki310/arduino-Ican14'
+    },
     achievements: [
       'iCAN\'14コンテスト参加',
       '体感型ゲームシステムの開発',
@@ -200,6 +264,10 @@ Arduinoと圧力センサーを組み合わせ、実際の乳しぼり動作を�
     year: '2020',
     status: 'completed',
     technologies: ['React', 'JavaScript', 'CSS3', 'REST API', 'Responsive Design'],
+    links: {
+      demo: 'https://react-movie-search-acae4.web.app/',
+      github: 'https://github.com/wwlapaki310/react/tree/main/hooks'
+    },
     achievements: [
       'TMDb APIの効率的な活用',
       'レスポンシブデザインの実装',
@@ -222,6 +290,10 @@ SNS投稿時のプライバシー保護や、子供の写真の安全な共有�
     year: '2019',
     status: 'completed',
     technologies: ['Python', 'OpenCV', 'dlib', 'LINE Messaging API', 'Flask'],
+    links: {
+      youtube: 'iLz7W2Dl7iY',
+      github: 'https://github.com/wwlapaki310/LineAPI'
+    },
     achievements: [
       '高精度な顔検出システムの実装',
       'LINE Messaging API連携',
@@ -244,6 +316,10 @@ SNSでの作品投稿時に制作過程を併せて公開することで、ク�
     year: '2020',
     status: 'completed',
     technologies: ['JavaScript', 'Canvas API', 'WebRTC', 'FFmpeg', 'Node.js'],
+    links: {
+      demo: 'https://show-me-your-drawing.herokuapp.com/',
+      youtube: 'RQbdIWpDZm4'
+    },
     achievements: [
       'リアルタイム描画キャプチャシステム',
       '効率的な動画圧縮アルゴリズム',
@@ -266,6 +342,10 @@ Canvas APIとWebGL技術を活用し、ブラウザ上でリアルタイムに�
     year: '2019',
     status: 'completed',
     technologies: ['JavaScript', 'Canvas API', 'WebGL', 'GIF.js', 'CSS Animations'],
+    links: {
+      demo: 'https://tegaki-furin.herokuapp.com/',
+      youtube: '42t6wK9uY7A'
+    },
     achievements: [
       '多彩なテキストアニメーション効果',
       '高効率なGIF生成システム',
@@ -354,6 +434,10 @@ Webカメラを通じた表情認識により学習中の感情状態を分析�
     year: '2018',
     status: 'completed',
     technologies: ['Node.js', 'Alexa Skills Kit', 'AWS Lambda', 'Data Analysis', 'Voice Interface'],
+    links: {
+      youtube: 'bmMFRU4lzY4',
+      github: 'https://github.com/jphacks/SD_1807'
+    },
     achievements: [
       'JPhacks2018参加',
       'Alexaスキル開発・公開',
@@ -467,6 +551,10 @@ SXSW2019でも発表を行い、Eluv.io企業賞を受賞しました。`,
     year: '2017',
     status: 'completed',
     technologies: ['Motion Sensors', 'Audio Processing', 'Mobile Development', 'Real-time Processing'],
+    links: {
+      youtube: 'RxwkAhTtIh0',
+      github: 'https://github.com/jphacks/SD_1706'
+    },
     achievements: [
       'JPhacks2017仙台予選参加',
       'モーション認識DJ システムの開発',
@@ -561,6 +649,20 @@ export default function WorkDetailPage({ params }: PageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
+            {/* YouTube Video */}
+            {project.links?.youtube && (
+              <Card variant="glass" className="mb-8">
+                <CardHeader>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    🎬 デモ動画
+                  </h2>
+                </CardHeader>
+                <CardContent>
+                  <YouTubeEmbed videoId={project.links.youtube} title={project.title} />
+                </CardContent>
+              </Card>
+            )}
+
             {/* Description */}
             <Card variant="glass" className="mb-8">
               <CardHeader>
