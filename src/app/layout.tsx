@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { ThemeProvider } from '@/components/ThemeProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link
           rel="alternate"
@@ -41,11 +42,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
-        <Header />
-        <main className="pt-16">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider defaultTheme="system">
+          <Header />
+          <main className="pt-16">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
