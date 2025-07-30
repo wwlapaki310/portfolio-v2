@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GlassNav } from '@/components/ui/Glass'
 import { StaticButton } from '@/components/ui/Button'
+import { ThemeToggle, ThemeToggleMobile } from '@/components/ui/ThemeToggle'
 import { cn } from '@/lib/utils'
 
 const navigation = [
@@ -79,12 +80,7 @@ export function Header() {
             </StaticButton>
             
             {/* Theme Toggle Button */}
-            <button
-              className="p-2 rounded-lg glass hover-lift transition-all duration-300"
-              aria-label="Toggle theme"
-            >
-              <span className="text-lg">🌙</span>
-            </button>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
@@ -141,12 +137,7 @@ export function Header() {
             <StaticButton variant="glass" size="sm" className="flex-1 mr-2">
               Contact
             </StaticButton>
-            <button
-              className="p-3 rounded-lg glass hover-lift"
-              aria-label="Toggle theme"
-            >
-              <span className="text-lg">🌙</span>
-            </button>
+            <ThemeToggleMobile />
           </div>
         </div>
       </div>
