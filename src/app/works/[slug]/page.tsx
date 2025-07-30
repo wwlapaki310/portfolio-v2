@@ -60,7 +60,7 @@ DNAを用いた合成分子ロボットの設計・開発を行い、分子レ�
     status: 'completed',
     technologies: ['DNA Design', 'Molecular Simulation', 'Web Development', 'Data Analysis'],
     links: {
-      blog: '/blog/3',
+      blog: '/blog/biomod-2015-world-champion',
       demo: 'http://biomod.net/winners/2015.html'
     },
     achievements: [
@@ -476,14 +476,14 @@ Webカメラを通じた表情認識により学習中の感情状態を分析�
 
 カメラで物体を認識し、その物体のHSV色彩情報を音楽のパラメータにマッピングすることで、リアルタイムで音楽を生成します。色の明度は音の高さに、彩度はボリュームに、色相は楽器の種類に対応させました。
 
-SXSW2019でも発表を行い、Eluv.io企業賞を受賞しました。`,
+SXSW2019でも発表を行い、Eluv.io企業賞を受賞しました。詳細な開発体験談とSXSWでの学びは、ブログ記事でご覧いただけます。`,
     category: 'AI/ML',
     tags: ['Sechack365', 'Computer Vision', 'Music Generation', 'HSV', 'SXSW'],
     year: '2019',
     status: 'completed',
     technologies: ['Computer Vision', 'Audio Synthesis', 'HSV Color Space', 'Real-time Processing'],
     links: {
-      blog: 'http://akisatooo.hatenablog.com/entry/2019/04/07/232752'
+      blog: '/blog/sxsw-2019-color-music-experience'
     },
     achievements: [
       'Sechack365海外派遣チーム参加',
