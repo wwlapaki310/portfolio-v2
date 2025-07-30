@@ -31,7 +31,7 @@ const projectsData: WorkProject[] = [
     status: 'completed',
     featured: true,
     links: {
-      blog: '/blog/3',
+      blog: '/blog/biomod-2015-world-champion',
       demo: 'http://biomod.net/winners/2015.html'
     }
   },
@@ -72,7 +72,7 @@ const projectsData: WorkProject[] = [
     status: 'completed',
     featured: true,
     links: {
-      blog: 'http://akisatooo.hatenablog.com/entry/2019/04/07/232752'
+      blog: '/blog/sxsw-2019-color-music-experience'
     }
   },
   
@@ -231,7 +231,7 @@ const projectsData: WorkProject[] = [
   },
   {
     id: 'milking-game',
-    title: '乳しぼりゲーム（iCAN\\'14）',
+    title: '乳しぼりゲーム（iCAN\'14）',
     description: 'センサー技術を活用した体感型乳しぼりゲーム。Arduino+圧力センサーでリアルな酪農体験を再現。',
     category: 'IoT',
     tags: ['iCAN', 'Arduino', 'Sensor'],
@@ -378,6 +378,11 @@ export default function Works() {
                     {project.links.github && (
                       <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">
                         📁 GitHub
+                      </span>
+                    )}
+                    {project.links.blog && (
+                      <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-2 py-1 rounded">
+                        📝 ブログ
                       </span>
                     )}
                   </div>
