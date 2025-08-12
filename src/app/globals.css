@@ -2,33 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design Tokens - Improved Color Palette */
+/* Design Tokens - Enhanced Color Palette for Better Readability */
 :root {
-  /* Brand Colors - More Vibrant */
-  --color-black: #0f172a;        /* Slightly softer black */
+  /* Brand Colors - Improved Contrast */
+  --color-black: #0f172a;        /* Deep slate black */
   --color-white: #ffffff;
-  --color-teal: #0d9488;         /* Darker teal for better contrast */
-  --color-cyan: #0891b2;         /* Darker cyan for better contrast */
-  --color-orange: #ea580c;       /* Darker orange for better contrast */
-  --color-amber: #d97706;        /* Darker amber for better contrast */
+  --color-teal: #0f766e;         /* Deeper teal for better contrast */
+  --color-cyan: #0e7490;         /* Deeper cyan for better contrast */
+  --color-orange: #dc2626;       /* More red-orange for better contrast */
+  --color-amber: #b45309;        /* Much darker amber for better contrast */
   
-  /* Gray Scale - Significantly Improved Contrast */
+  /* Gray Scale - Significantly Enhanced Contrast */
   --color-charcoal: #1e293b;     /* Dark but not black */
-  --color-slate: #334155;        /* Much darker slate for better contrast */
-  --color-medium-gray: #475569;  /* Better mid-tone */
+  --color-slate: #1e293b;        /* Much darker slate */
+  --color-medium-gray: #374151;  /* Darker mid-tone */
   --color-light-gray: #f8fafc;   /* Very light background */
-  --color-border: #e2e8f0;       /* Subtle border color */
+  --color-border: #d1d5db;       /* More visible border color */
   
   /* Enhanced Background Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #f1f5f9;
   
-  /* Enhanced Text Colors */
-  --text-primary: #0f172a;       /* Very dark for high contrast */
-  --text-secondary: #334155;     /* Dark gray for secondary text */
-  --text-tertiary: #64748b;      /* Medium gray for tertiary text */
-  --text-accent: #0d9488;        /* Teal accent */
+  /* Enhanced Text Colors - Much Better Contrast */
+  --text-primary: #111827;       /* Almost black for highest contrast */
+  --text-secondary: #374151;     /* Much darker gray for secondary text */
+  --text-tertiary: #4b5563;      /* Darker gray for tertiary text */
+  --text-accent: #0f766e;        /* Darker teal accent */
   
   /* Spacing Scale */
   --space-xs: 0.25rem;
@@ -55,25 +55,25 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.75;
   
-  /* Shadows & Effects - Softer */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
-  --shadow-lg: 0 10px 15px rgba(0,0,0,0.08);
-  --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
-  --shadow-2xl: 0 25px 50px rgba(0,0,0,0.15);
+  /* Shadows & Effects - Softer but Visible */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+  --shadow-2xl: 0 25px 50px rgba(0,0,0,0.2);
   
-  /* Glassmorphism - Much Better Contrast */
-  --glass-bg: rgba(255,255,255,0.85);        /* Much more opaque */
-  --glass-bg-dark: rgba(15,23,42,0.85);      /* Much more opaque */
-  --glass-border: rgba(226,232,240,0.8);     /* Much more visible border */
-  --glass-border-dark: rgba(255,255,255,0.2); /* More visible dark border */
-  --glass-blur: 12px;                        /* Reduced blur for clarity */
+  /* Glassmorphism - Much Better Readability */
+  --glass-bg: rgba(255,255,255,0.98);        /* Almost opaque for readability */
+  --glass-bg-dark: rgba(15,23,42,0.95);      /* Almost opaque dark */
+  --glass-border: rgba(0,0,0,0.08);          /* Subtle but visible border */
+  --glass-border-dark: rgba(255,255,255,0.15); /* Visible dark border */
+  --glass-blur: 8px;                         /* Reduced blur for clarity */
   
-  /* Gradients - Enhanced */
-  --gradient-teal: linear-gradient(135deg, #0d9488, #0891b2);
-  --gradient-orange: linear-gradient(135deg, #ea580c, #d97706);
-  --gradient-dark: linear-gradient(135deg, #1e293b, #334155);
-  --gradient-light: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  /* Gradients - Enhanced Visibility */
+  --gradient-teal: linear-gradient(135deg, #0f766e, #0e7490);
+  --gradient-orange: linear-gradient(135deg, #dc2626, #b45309);
+  --gradient-dark: linear-gradient(135deg, #1e293b, #374151);
+  --gradient-light: linear-gradient(135deg, #f8fafc, #e5e7eb);
   
   /* Transitions */
   --transition-fast: 0.15s ease;
@@ -88,7 +88,7 @@
   --radius-2xl: 1.5rem;
 }
 
-/* Dark Mode Variables - Much Better Contrast */
+/* Dark Mode Variables - Excellent Contrast */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: #0f172a;
@@ -98,12 +98,12 @@
     --text-primary: #f8fafc;       /* Very light for excellent contrast */
     --text-secondary: #e2e8f0;     /* Light gray for secondary text */
     --text-tertiary: #cbd5e1;      /* Medium light for tertiary text */
-    --text-accent: #14b8a6;        /* Brighter teal for dark mode */
+    --text-accent: #22d3ee;        /* Brighter cyan for dark mode */
     
-    --color-border: #334155;       /* Darker border for dark mode */
+    --color-border: #475569;       /* Visible border for dark mode */
     
-    --glass-bg: rgba(15,23,42,0.9); /* Very opaque for dark mode */
-    --glass-border: rgba(255,255,255,0.15); /* Subtle light border */
+    --glass-bg: rgba(15,23,42,0.95); /* Almost opaque for dark mode */
+    --glass-border: rgba(255,255,255,0.1); /* Subtle light border */
   }
 }
 
@@ -130,7 +130,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
-  /* Enhanced contrast */
+  /* Enhanced readability */
   font-weight: 400;
   font-size: 16px;
 }
@@ -158,24 +158,28 @@ body {
   /* Enhanced Text Contrast Classes */
   .text-primary {
     color: var(--text-primary);
+    font-weight: 500; /* Slightly bolder for readability */
   }
   
   .text-secondary {
     color: var(--text-secondary);
+    font-weight: 400;
   }
   
   .text-tertiary {
     color: var(--text-tertiary);
+    font-weight: 400;
   }
   
   .text-accent {
     color: var(--text-accent);
+    font-weight: 500;
   }
 }
 
 /* Component Utilities */
 @layer components {
-  /* Glassmorphism Effect - Much Improved */
+  /* Glassmorphism Effect - Optimized for Readability */
   .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -185,17 +189,17 @@ body {
   }
   
   .glass-dark {
-    background: rgba(15,23,42,0.9);     /* Much more opaque */
+    background: rgba(15,23,42,0.95);     /* Almost opaque */
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
   }
   
   .glass-light {
-    background: rgba(255,255,255,0.95);  /* Almost opaque */
+    background: rgba(255,255,255,0.98);  /* Almost opaque */
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid rgba(226,232,240,0.6);
+    border: 1px solid rgba(0,0,0,0.05);
     box-shadow: var(--shadow-lg);
   }
   
@@ -262,7 +266,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle, rgba(13,148,136,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(15,118,110,0.2) 0%, transparent 70%);
     transform: scale(0);
     opacity: 0;
     transition: transform var(--transition-base), opacity var(--transition-base);
@@ -304,6 +308,7 @@ body {
   .btn-primary:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
+    filter: brightness(1.05);
   }
   
   .btn-secondary {
@@ -316,6 +321,7 @@ body {
   .btn-secondary:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
+    filter: brightness(1.05);
   }
   
   .btn-ghost {
@@ -336,21 +342,21 @@ body {
     border-color: var(--color-teal);
   }
   
-  /* Enhanced Badge/Tag Components */
+  /* Enhanced Badge/Tag Components - Better Contrast */
   .badge {
     display: inline-flex;
     align-items: center;
     padding: 0.25rem 0.75rem;
     font-size: var(--text-sm);
-    font-weight: 500;
+    font-weight: 600; /* Bolder for better readability */
     border-radius: var(--radius-md);
     border: 1px solid transparent;
   }
   
   .badge-teal {
-    background: rgba(13,148,136,0.1);
-    color: var(--color-teal);
-    border-color: rgba(13,148,136,0.2);
+    background: rgba(15,118,110,0.15);
+    color: #0f766e;
+    border-color: rgba(15,118,110,0.3);
   }
   
   .badge-gray {
@@ -361,7 +367,7 @@ body {
   
   /* Animated Background */
   .animated-bg {
-    background: linear-gradient(-45deg, #0d9488, #0891b2, #ea580c, #d97706);
+    background: linear-gradient(-45deg, #0f766e, #0e7490, #dc2626, #b45309);
     background-size: 400% 400%;
     animation: gradientShift 8s ease infinite;
   }
@@ -416,75 +422,75 @@ body {
     padding: var(--space-3xl) 0;
   }
   
-  /* Navigation Styles - Much Better Contrast */
+  /* Navigation Styles - Optimized for Readability */
   .nav-glass {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.95); /* Much more opaque */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(226,232,240,0.8); /* More visible border */
+    background: rgba(255, 255, 255, 0.98); /* Almost opaque */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08); /* More visible border */
     transition: all var(--transition-base);
     box-shadow: var(--shadow-sm);
   }
   
   .nav-glass.scrolled {
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.99);
     box-shadow: var(--shadow-md);
     border-bottom-color: var(--color-border);
   }
   
-  /* Dark mode navigation - Much Better */
+  /* Dark mode navigation - Much Better Readability */
   .dark .nav-glass {
-    background: rgba(15, 23, 42, 0.95); /* Much more opaque */
-    border-bottom: 1px solid rgba(51,65,85,0.8);
+    background: rgba(15, 23, 42, 0.98); /* Almost opaque */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   
   .dark .nav-glass.scrolled {
-    background: rgba(15, 23, 42, 0.98);
+    background: rgba(15, 23, 42, 0.99);
     border-bottom-color: var(--color-border);
   }
 }
 
-/* Enhanced Text Color Utilities */
+/* Enhanced Text Color Utilities - Superior Contrast */
 @layer utilities {
   .text-high-contrast {
     color: var(--text-primary);
-    font-weight: 500; /* Slightly bolder for better visibility */
+    font-weight: 600; /* Bolder for maximum visibility */
   }
   
   .text-medium-contrast {
     color: var(--text-secondary);
-    font-weight: 400;
+    font-weight: 500; /* Medium weight for readability */
   }
   
   .text-low-contrast {
     color: var(--text-tertiary);
-    font-weight: 400;
+    font-weight: 400; /* Normal weight but darker color */
   }
   
-  /* Category-specific Colors with Better Contrast */
-  .category-research { @apply bg-purple-50 text-purple-900 border-purple-200; }
-  .category-ai-ml { @apply bg-emerald-50 text-emerald-900 border-emerald-200; }
-  .category-game { @apply bg-blue-50 text-blue-900 border-blue-200; }
-  .category-mobile { @apply bg-orange-50 text-orange-900 border-orange-200; }
-  .category-iot { @apply bg-teal-50 text-teal-900 border-teal-200; }
-  .category-web { @apply bg-indigo-50 text-indigo-900 border-indigo-200; }
-  .category-engineering { @apply bg-red-50 text-red-900 border-red-200; }
-  .category-creative { @apply bg-pink-50 text-pink-900 border-pink-200; }
+  /* Category-specific Colors with Excellent Contrast */
+  .category-research { @apply bg-purple-50 text-purple-900 border-purple-300; }
+  .category-ai-ml { @apply bg-emerald-50 text-emerald-900 border-emerald-300; }
+  .category-game { @apply bg-blue-50 text-blue-900 border-blue-300; }
+  .category-mobile { @apply bg-orange-50 text-orange-900 border-orange-300; }
+  .category-iot { @apply bg-teal-50 text-teal-900 border-teal-300; }
+  .category-web { @apply bg-indigo-50 text-indigo-900 border-indigo-300; }
+  .category-engineering { @apply bg-red-50 text-red-900 border-red-300; }
+  .category-creative { @apply bg-pink-50 text-pink-900 border-pink-300; }
   
-  /* Dark mode category colors */
-  .dark .category-research { @apply bg-purple-900/20 text-purple-200 border-purple-800; }
-  .dark .category-ai-ml { @apply bg-emerald-900/20 text-emerald-200 border-emerald-800; }
-  .dark .category-game { @apply bg-blue-900/20 text-blue-200 border-blue-800; }
-  .dark .category-mobile { @apply bg-orange-900/20 text-orange-200 border-orange-800; }
-  .dark .category-iot { @apply bg-teal-900/20 text-teal-200 border-teal-800; }
-  .dark .category-web { @apply bg-indigo-900/20 text-indigo-200 border-indigo-800; }
-  .dark .category-engineering { @apply bg-red-900/20 text-red-200 border-red-800; }
-  .dark .category-creative { @apply bg-pink-900/20 text-pink-200 border-pink-800; }
+  /* Dark mode category colors - Better Contrast */
+  .dark .category-research { @apply bg-purple-900/30 text-purple-200 border-purple-700; }
+  .dark .category-ai-ml { @apply bg-emerald-900/30 text-emerald-200 border-emerald-700; }
+  .dark .category-game { @apply bg-blue-900/30 text-blue-200 border-blue-700; }
+  .dark .category-mobile { @apply bg-orange-900/30 text-orange-200 border-orange-700; }
+  .dark .category-iot { @apply bg-teal-900/30 text-teal-200 border-teal-700; }
+  .dark .category-web { @apply bg-indigo-900/30 text-indigo-200 border-indigo-700; }
+  .dark .category-engineering { @apply bg-red-900/30 text-red-200 border-red-700; }
+  .dark .category-creative { @apply bg-pink-900/30 text-pink-200 border-pink-700; }
 }
 
 /* Print Optimization (Enhanced) */
@@ -544,6 +550,15 @@ body {
   .badge {
     border-width: 2px !important;
   }
+  
+  /* Extra bold text for high contrast mode */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700 !important;
+  }
+  
+  .text-primary {
+    font-weight: 600 !important;
+  }
 }
 
 /* Enhanced Selection Colors */
@@ -562,6 +577,7 @@ a {
   color: var(--color-teal);
   text-decoration: none;
   transition: color var(--transition-fast);
+  font-weight: 500; /* Bolder links for visibility */
 }
 
 a:hover {
@@ -582,10 +598,68 @@ input, textarea, select {
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: border-color var(--transition-base);
+  font-weight: 500; /* Bolder text in forms */
 }
 
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--color-teal);
-  box-shadow: 0 0 0 3px rgba(13,148,136,0.1);
+  box-shadow: 0 0 0 3px rgba(15,118,110,0.1);
+}
+
+/* Headings Enhancement for Better Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 700; /* Bolder headings */
+  letter-spacing: -0.025em; /* Tighter spacing for readability */
+}
+
+/* Enhanced Lists */
+ul, ol {
+  color: var(--text-secondary);
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+/* Enhanced Code Blocks */
+code {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600; /* Bolder code text */
+  border: 1px solid var(--color-border);
+}
+
+pre {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+/* Enhanced Table Styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-tertiary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+td {
+  color: var(--text-secondary);
 }
