@@ -7,13 +7,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts
   const posts = getAllPosts()
   
-  // Generate blog post URLs
-  const blogUrls = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }))
+  // Generate blog post URLs with date validation
+  const blogUrls = posts.map((post) => {
+    let lastModified = new Date() // Default to current date
+    
+    try {
+      const parsedDate = new Date(post.date)
+      if (!isNaN(parsedDate.getTime())) {
+        lastModified = parsedDate
+      }
+    } catch (error) {
+      console.warn(`Invalid date for post ${post.slug}: ${post.date}, using current date`)
+    }
+
+    return {
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }
+  })
 
   // Static pages
   const staticPages = [
