@@ -15,10 +15,12 @@ interface WorkProject {
     blog?: string
     presentation?: string
     youtube?: string
+    demoStatus?: 'active' | 'archived' | 'discontinued'
+    demoNote?: string
   }
 }
 
-// 全20プロジェクトデータ（リンク情報追加完了 🎬🔗）
+// 全21プロジェクトデータ（リンク切れ修正完了 🔧🔗）
 const projectsData: WorkProject[] = [
   // Featured Projects (注目プロジェクト)
   {
@@ -32,7 +34,8 @@ const projectsData: WorkProject[] = [
     featured: true,
     links: {
       blog: '/blog/biomod-2015-world-champion',
-      demo: 'http://biomod.net/winners/2015.html'
+      demo: 'http://biomod.net/winners/2015.html',
+      demoStatus: 'active'
     }
   },
   {
@@ -45,7 +48,8 @@ const projectsData: WorkProject[] = [
     status: 'completed',
     featured: true,
     links: {
-      demo: 'https://2020.spaceappschallenge.org/locations/tokyo/teams'
+      demo: 'https://2020.spaceappschallenge.org/locations/tokyo/teams',
+      demoStatus: 'active'
     }
   },
   {
@@ -59,7 +63,8 @@ const projectsData: WorkProject[] = [
     featured: true,
     links: {
       demo: 'https://unityroom.com/games/aki310-lot1',
-      youtube: 'https://www.youtube.com/embed/rqnaxJkhNx0'
+      youtube: 'rqnaxJkhNx0',
+      demoStatus: 'active'
     }
   },
   {
@@ -86,7 +91,8 @@ const projectsData: WorkProject[] = [
     year: '2016',
     status: 'completed',
     links: {
-      demo: 'https://biomod2016.gitlab.io/sendai/'
+      demo: 'https://biomod2016.gitlab.io/sendai/',
+      demoStatus: 'active'
     }
   },
   
@@ -94,14 +100,15 @@ const projectsData: WorkProject[] = [
   {
     id: 'react-movie-search',
     title: 'React映画検索サイト',
-    description: 'The Movie Database (TMDb) APIを活用したReact製の映画検索・詳細閲覧サイト。レスポンシブデザインとスムーズなアニメーション実装。',
+    description: 'The Movie Database (TMDb) APIを活用したReact製の映画検索・詳細閲覧サイト。レスポンシブデザインとスムーズなアニメーション実装。freeCodeCampチュートリアルをベースに独自機能を追加。',
     category: 'Web Development',
-    tags: ['React', 'JavaScript', 'TMDb API'],
+    tags: ['React', 'JavaScript', 'TMDb API', 'freeCodeCamp'],
     year: '2020',
     status: 'completed',
     links: {
       demo: 'https://react-movie-search-acae4.web.app/',
-      github: 'https://github.com/wwlapaki310/react/tree/main/hooks'
+      github: 'https://github.com/wwlapaki310/react/tree/main/hooks',
+      demoStatus: 'active'
     }
   },
   {
@@ -114,7 +121,9 @@ const projectsData: WorkProject[] = [
     status: 'completed',
     links: {
       demo: 'https://show-me-your-drawing.herokuapp.com/',
-      youtube: 'https://www.youtube.com/embed/RQbdIWpDZm4'
+      youtube: 'RQbdIWpDZm4',
+      demoStatus: 'discontinued',
+      demoNote: 'Heroku無料プラン廃止により2022年11月にサービス終了'
     }
   },
   {
@@ -127,7 +136,9 @@ const projectsData: WorkProject[] = [
     status: 'completed',
     links: {
       demo: 'https://tegaki-furin.herokuapp.com/',
-      youtube: 'https://www.youtube.com/embed/42t6wK9uY7A'
+      youtube: '42t6wK9uY7A',
+      demoStatus: 'discontinued',
+      demoNote: 'Heroku無料プラン廃止により2022年11月にサービス終了'
     }
   },
   {
@@ -150,7 +161,7 @@ const projectsData: WorkProject[] = [
     year: '2019',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/iLz7W2Dl7iY',
+      youtube: 'iLz7W2Dl7iY',
       github: 'https://github.com/wwlapaki310/LineAPI'
     }
   },
@@ -177,7 +188,7 @@ const projectsData: WorkProject[] = [
   {
     id: 'face-swap-app',
     title: '顔入れ替え権利売買アプリ',
-    description: '写真の顔を入れ替える権利を売買するアプリ。旅行先の映える写真を顔を入れ替えて自分のものにできる。',
+    description: '写真の顔を入れ替える権利を売買するアプリ。旅行先の映える写真を顔を入れ替えて自分のものにできる。SPAJAM2019で発表。',
     category: 'Mobile App',
     tags: ['SPAJAM', 'Face Recognition', 'Image Processing'],
     year: '2019',
@@ -201,7 +212,7 @@ const projectsData: WorkProject[] = [
     year: '2017',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/RxwkAhTtIh0',
+      youtube: 'RxwkAhTtIh0',
       github: 'https://github.com/jphacks/SD_1706'
     }
   },
@@ -210,7 +221,7 @@ const projectsData: WorkProject[] = [
   {
     id: 'iot-bookshelf',
     title: 'IoT本棚地震対策仕切り',
-    description: '地震の時に本棚から本が落ちるのを守るIoT仕切り。普段は邪魔にならず、震度4以上の揺れを感知したらモーターで仕切りが上がる。',
+    description: '地震の時に本棚から本が落ちるのを守るIoT仕切り。普段は邪魔にならず、震度4以上の揺れを感知したらモーターで仕切りが上がる。iCAN\'14第3位受賞。',
     category: 'IoT',
     tags: ['IoT', 'Arduino', 'Sensor'],
     year: '2014',
@@ -225,7 +236,7 @@ const projectsData: WorkProject[] = [
     year: '2018',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/bmMFRU4lzY4',
+      youtube: 'bmMFRU4lzY4',
       github: 'https://github.com/jphacks/SD_1807'
     }
   },
@@ -238,7 +249,7 @@ const projectsData: WorkProject[] = [
     year: '2014',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/kFYFr6BcUuU',
+      youtube: 'kFYFr6BcUuU',
       github: 'https://github.com/wwlapaki310/arduino-Ican14'
     }
   },
@@ -253,7 +264,7 @@ const projectsData: WorkProject[] = [
     year: '2019',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/HnvzeQITF78',
+      youtube: 'HnvzeQITF78',
       github: 'https://github.com/wwlapaki310/Unity-ball-game-midorinoakuma'
     }
   },
@@ -268,7 +279,7 @@ const projectsData: WorkProject[] = [
     year: '2016',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/JbZ2ZF7RlB4'
+      youtube: 'JbZ2ZF7RlB4'
     }
   },
   
@@ -282,7 +293,7 @@ const projectsData: WorkProject[] = [
     year: '2020',
     status: 'completed',
     links: {
-      youtube: 'https://www.youtube.com/embed/PnCsbx1P4ws'
+      youtube: 'PnCsbx1P4ws'
     }
   }
 ]
@@ -323,7 +334,7 @@ export default function Works() {
             🎉 全21個のプロジェクト公開完了！
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-400">
-            Phase 1A移行作業完了 (7月28日) + 動画・デモリンク追加✨
+            リンク切れ修正・コンテンツ充実化対応済み ✨
           </span>
         </div>
       </div>
@@ -366,8 +377,12 @@ export default function Works() {
                 {project.links && (
                   <div className="mb-4 flex flex-wrap gap-1">
                     {project.links.demo && (
-                      <span className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded">
-                        🎮 デモ
+                      <span className={`text-xs px-2 py-1 rounded ${
+                        project.links.demoStatus === 'discontinued' 
+                          ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                          : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                      }`}>
+                        {project.links.demoStatus === 'discontinued' ? '📄 デモ終了' : '🎮 デモ'}
                       </span>
                     )}
                     {project.links.youtube && (
@@ -451,8 +466,12 @@ export default function Works() {
                     {project.links && (
                       <div className="mb-3 flex flex-wrap gap-1">
                         {project.links.demo && (
-                          <span className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded">
-                            🎮 デモ
+                          <span className={`text-xs px-2 py-1 rounded ${
+                            project.links.demoStatus === 'discontinued' 
+                              ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                              : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                          }`}>
+                            {project.links.demoStatus === 'discontinued' ? '📄 デモ終了' : '🎮 デモ'}
                           </span>
                         )}
                         {project.links.youtube && (
@@ -513,14 +532,14 @@ export default function Works() {
             <div className="text-sm text-gray-600 dark:text-gray-400">開始年〜現在</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Phase A完了 🎬</div>
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">95%</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">リンク修正完了 🔧</div>
           </div>
         </div>
         <div className="mt-6 text-gray-600 dark:text-gray-400">
           <p>DNA分子ロボットから最新のAI技術まで、多様な技術分野での実績</p>
           <p className="text-sm mt-2 text-teal-600 dark:text-teal-400">
-            ✨ 動画・デモリンク追加により、実際の動作確認が可能になりました！
+            ✨ リンク切れ修正とコンテンツ充実化により、より信頼性の高いポートフォリオを実現！
           </p>
         </div>
       </section>
