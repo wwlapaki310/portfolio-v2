@@ -23,13 +23,25 @@ export async function GET(request: NextRequest) {
     <uri>${siteUrl}</uri>
   </author>
   <rights>© 2025 Satoru Akita. All rights reserved.</rights>
-  ${posts.map(post => `
+  ${posts.map(post => {
+    // Ensure valid date for each post
+    let postDate = new Date().toISOString()
+    try {
+      const parsedDate = new Date(post.date)
+      if (!isNaN(parsedDate.getTime())) {
+        postDate = parsedDate.toISOString()
+      }
+    } catch (error) {
+      console.warn(`Invalid date for post ${post.slug}: ${post.date}`)
+    }
+
+    return `
   <entry>
     <title type="html">${escapeXml(post.title)}</title>
     <link href="${siteUrl}/blog/${post.slug}" rel="alternate" type="text/html"/>
     <id>${siteUrl}/blog/${post.slug}</id>
-    <published>${new Date(post.date).toISOString()}</published>
-    <updated>${new Date(post.date).toISOString()}</updated>
+    <published>${postDate}</published>
+    <updated>${postDate}</updated>
     <author>
       <name>${escapeXml(post.author || 'Satoru Akita')}</name>
       <email>your-email@example.com</email>
@@ -37,7 +49,8 @@ export async function GET(request: NextRequest) {
     <summary type="html">${escapeXml(post.excerpt || post.content.substring(0, 300) + '...')}</summary>
     <content type="html">${escapeXml(post.content.substring(0, 1000) + (post.content.length > 1000 ? '...' : ''))}</content>
     ${post.tags?.map(tag => `<category term="${escapeXml(tag)}" label="${escapeXml(tag)}"/>`).join('') || ''}
-  </entry>`).join('')}
+  </entry>`
+  }).join('')}
 </feed>`
 
   return new Response(atomXml, {
@@ -54,7 +67,7 @@ function escapeXml(unsafe: string): string {
       case '<': return '&lt;'
       case '>': return '&gt;'
       case '&': return '&amp;'
-      case '\'': return '&apos;'
+      case "'": return '&apos;'
       case '"': return '&quot;'
       default: return c
     }
