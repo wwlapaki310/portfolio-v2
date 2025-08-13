@@ -31,11 +31,30 @@ export function getAllPosts(): BlogPost[] {
       // Use gray-matter to parse the post metadata section
       const matterResult = matter(fileContents)
 
+      // Validate and normalize date
+      let normalizedDate = new Date().toISOString().split('T')[0] // Default to today
+      if (matterResult.data.date) {
+        const parsedDate = new Date(matterResult.data.date)
+        if (!isNaN(parsedDate.getTime())) {
+          normalizedDate = parsedDate.toISOString().split('T')[0]
+        }
+      }
+
+      // Ensure required fields with fallbacks
+      const normalizedData = {
+        title: matterResult.data.title || 'Untitled',
+        date: normalizedDate,
+        excerpt: matterResult.data.excerpt || matterResult.data.description || matterResult.content.substring(0, 150) + '...',
+        tags: Array.isArray(matterResult.data.tags) ? matterResult.data.tags : [],
+        author: matterResult.data.author || 'Satoru Akita',
+        readTime: matterResult.data.readTime || '5 min read',
+        content: matterResult.content,
+      }
+
       // Combine the data with the slug
       return {
         slug,
-        content: matterResult.content,
-        ...matterResult.data,
+        ...normalizedData,
       } as BlogPost
     })
 
@@ -56,10 +75,29 @@ export function getPostBySlug(slug: string): BlogPost | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
     
+    // Validate and normalize date
+    let normalizedDate = new Date().toISOString().split('T')[0] // Default to today
+    if (matterResult.data.date) {
+      const parsedDate = new Date(matterResult.data.date)
+      if (!isNaN(parsedDate.getTime())) {
+        normalizedDate = parsedDate.toISOString().split('T')[0]
+      }
+    }
+
+    // Ensure required fields with fallbacks
+    const normalizedData = {
+      title: matterResult.data.title || 'Untitled',
+      date: normalizedDate,
+      excerpt: matterResult.data.excerpt || matterResult.data.description || matterResult.content.substring(0, 150) + '...',
+      tags: Array.isArray(matterResult.data.tags) ? matterResult.data.tags : [],
+      author: matterResult.data.author || 'Satoru Akita',
+      readTime: matterResult.data.readTime || '5 min read',
+      content: matterResult.content,
+    }
+    
     return {
       slug,
-      content: matterResult.content,
-      ...matterResult.data,
+      ...normalizedData,
     } as BlogPost
   } catch {
     return null
@@ -71,7 +109,9 @@ export function getAllTags(): string[] {
   const tagSet = new Set<string>()
   
   posts.forEach(post => {
-    post.tags.forEach(tag => tagSet.add(tag))
+    if (post.tags && Array.isArray(post.tags)) {
+      post.tags.forEach(tag => tagSet.add(tag))
+    }
   })
   
   return Array.from(tagSet).sort()
