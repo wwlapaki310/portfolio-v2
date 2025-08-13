@@ -325,7 +325,7 @@ export default function Works() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold text-foreground mb-4">My Works</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">My Works</h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
           過去に取り組んだプロジェクトや研究、ハッカソンでの成果物を紹介しています。
         </p>
@@ -341,7 +341,7 @@ export default function Works() {
 
       {/* Featured Projects */}
       <section className="mb-16">
-        <h2 className="text-2xl font-semibold text-foreground mb-6">🌟 注目プロジェクト</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">🌟 注目プロジェクト</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProjects.map((project) => (
             <Link
@@ -365,7 +365,7 @@ export default function Works() {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors line-clamp-2">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors line-clamp-2">
                   {project.title}
                 </h3>
                 
@@ -426,13 +426,13 @@ export default function Works() {
 
       {/* Projects by Category */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-foreground mb-6">📁 カテゴリ別プロジェクト</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">📁 カテゴリ別プロジェクト</h2>
         
         {Object.entries(projectsByCategory)
           .sort(([,a], [,b]) => b.length - a.length) // プロジェクト数順でソート
           .map(([category, projects]) => (
           <div key={category} className="mb-8">
-            <h3 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <span className={`text-xs px-2 py-1 rounded ${categoryColors[category as keyof typeof categoryColors]}`}>
                 {category}
               </span>
@@ -450,7 +450,7 @@ export default function Works() {
                 >
                   <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md hover:border-teal-300 dark:hover:border-teal-600 transition-all duration-300">
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className="text-lg font-semibold text-foreground group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors line-clamp-2">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors line-clamp-2">
                         {project.title}
                       </h4>
                       <span className="text-xs text-gray-500 dark:text-gray-400 ml-4 flex-shrink-0">
@@ -517,7 +517,7 @@ export default function Works() {
 
       {/* Statistics */}
       <section className="text-center py-12 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-        <h2 className="text-2xl font-semibold text-foreground mb-4">📊 プロジェクト統計</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">📊 プロジェクト統計</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div>
             <div className="text-3xl font-bold text-teal-600 dark:text-teal-400">21</div>
