@@ -8,11 +8,11 @@ import { StaticButton } from '@/components/ui/Button'
 import { ThemeToggle, ThemeToggleMobile } from '@/components/ui/ThemeToggle'
 import { cn } from '@/lib/utils'
 
+// Simplified Navigation (Issue #2 Phase 2: Site Simplification)
 const navigation = [
-  { name: 'About', href: '/about' },
   { name: 'Works', href: '/works' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Slides', href: '/slides' },
+  { name: 'About', href: '/about' },
 ]
 
 export function Header() {
@@ -41,7 +41,7 @@ export function Header() {
             Satoru Akita
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Simplified */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => {
               const isActive = pathname === item.href
@@ -50,7 +50,7 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'relative px-3 py-2 text-sm font-medium transition-all duration-300 group',
+                    'relative px-3 py-2 text-sm font-semibold transition-all duration-300 group',
                     'hover:text-teal-600 dark:hover:text-teal-400',
                     isActive
                       ? 'text-teal-600 dark:text-teal-400'
@@ -71,21 +71,23 @@ export function Header() {
 
           {/* CTA Button & Theme Toggle */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Simple Contact Button */}
             <StaticButton 
               variant="ghost" 
               size="sm"
-              className="text-sm"
+              className="text-sm font-semibold"
+              href="mailto:wwlap24@gmail.com"
             >
               Contact
             </StaticButton>
             
-            {/* Theme Toggle Button */}
+            {/* Theme Toggle Button - Enhanced for Issue #2 */}
             <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg glass hover-lift"
+            className="md:hidden p-2 rounded-lg glass hover-lift focus:outline-none focus:ring-2 focus:ring-teal-500"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -107,7 +109,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Simplified */}
       <div className={cn(
         'md:hidden glass-dark transition-all duration-300 overflow-hidden',
         isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
@@ -120,7 +122,7 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300',
+                  'block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300',
                   'hover:bg-white/10',
                   isActive
                     ? 'bg-gradient-teal text-white'
@@ -134,7 +136,12 @@ export function Header() {
           })}
           
           <div className="flex items-center justify-between pt-4 border-t border-white/20">
-            <StaticButton variant="glass" size="sm" className="flex-1 mr-2">
+            <StaticButton 
+              variant="glass" 
+              size="sm" 
+              className="flex-1 mr-2"
+              href="mailto:wwlap24@gmail.com"
+            >
               Contact
             </StaticButton>
             <ThemeToggleMobile />
