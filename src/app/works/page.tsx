@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ProjectCardImage } from '@/components/ProjectImage'
 
 interface WorkProject {
   id: string
@@ -350,11 +351,11 @@ export default function Works() {
               className="group block"
             >
               <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg hover:border-teal-300 dark:hover:border-teal-600 transition-all duration-300 group-hover:scale-[1.02]">
-                <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-gray-500 dark:text-gray-400 text-sm">
-                    プロジェクト画像
-                  </span>
-                </div>
+                <ProjectCardImage
+                  projectId={project.id}
+                  title={project.title}
+                  className="aspect-video rounded-lg mb-4 overflow-hidden"
+                />
                 
                 <div className="mb-3 flex items-center gap-2">
                   <span className={`text-xs px-2 py-1 rounded ${categoryColors[project.category as keyof typeof categoryColors] || 'bg-gray-100 text-gray-800'}`}>
@@ -532,14 +533,14 @@ export default function Works() {
             <div className="text-sm text-gray-600 dark:text-gray-400">開始年〜現在</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">95%</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">リンク修正完了 🔧</div>
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">画像対応完了 🖼️</div>
           </div>
         </div>
         <div className="mt-6 text-gray-600 dark:text-gray-400">
           <p>DNA分子ロボットから最新のAI技術まで、多様な技術分野での実績</p>
           <p className="text-sm mt-2 text-teal-600 dark:text-teal-400">
-            ✨ リンク切れ修正とコンテンツ充実化により、より信頼性の高いポートフォリオを実現！
+            ✨ 画像ギャラリー機能追加で、より魅力的なポートフォリオを実現！
           </p>
         </div>
       </section>
