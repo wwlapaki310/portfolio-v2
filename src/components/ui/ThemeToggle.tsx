@@ -11,88 +11,150 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
 
   const handleToggle = () => {
-    // Cycle through: light → dark → system
-    if (theme === 'light') {
-      setTheme('dark')
-    } else if (theme === 'dark') {
-      setTheme('system')
-    } else {
+    // Simple toggle: light ↔ dark (removed system option for simplicity)
+    if (resolvedTheme === 'dark') {
       setTheme('light')
+    } else {
+      setTheme('dark')
     }
   }
 
   const getIcon = () => {
-    if (theme === 'system') {
-      return '🖥️' // System icon
-    }
-    return resolvedTheme === 'dark' ? '🌙' : '☀️'
+    return resolvedTheme === 'dark' ? '☀️' : '🌙'
   }
 
   const getLabel = () => {
-    if (theme === 'system') {
-      return `System (${resolvedTheme})`
-    }
-    return theme === 'dark' ? 'Dark mode' : 'Light mode'
+    return resolvedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
   }
 
   return (
     <button
       className={cn(
-        'p-2 rounded-lg glass hover-lift transition-all duration-300',
-        'hover:bg-white/10 dark:hover:bg-white/5',
+        // Enhanced styling for Issue #2 - better contrast and visibility
+        'relative p-3 rounded-xl glass hover-lift transition-all duration-300',
+        'hover:bg-teal-500/10 dark:hover:bg-teal-400/10',
+        'border border-transparent hover:border-teal-500/20 dark:hover:border-teal-400/20',
         'focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50',
+        'shadow-md hover:shadow-lg active:scale-95',
+        'min-w-[44px] min-h-[44px]', // Accessibility: minimum touch target
         className
       )}
       onClick={handleToggle}
-      aria-label={`Toggle theme. Current: ${getLabel()}`}
+      aria-label={getLabel()}
       title={getLabel()}
     >
-      <span className="text-lg select-none">{getIcon()}</span>
+      {/* Icon with enhanced visibility */}
+      <span 
+        className="text-xl select-none transition-transform duration-300 hover:scale-110"
+        role="img"
+        aria-label={resolvedTheme === 'dark' ? 'Sun icon' : 'Moon icon'}
+      >
+        {getIcon()}
+      </span>
+      
+      {/* Subtle indicator dot */}
+      <div className={cn(
+        'absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white dark:border-gray-900 transition-colors duration-300',
+        resolvedTheme === 'dark' 
+          ? 'bg-blue-500' 
+          : 'bg-amber-500'
+      )} />
     </button>
   )
 }
 
-// Mobile version with text
+// Enhanced Mobile version with better UX
 export function ThemeToggleMobile({ className }: ThemeToggleProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
 
   const handleToggle = () => {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else if (theme === 'dark') {
-      setTheme('system')
-    } else {
+    if (resolvedTheme === 'dark') {
       setTheme('light')
+    } else {
+      setTheme('dark')
     }
   }
 
   const getIcon = () => {
-    if (theme === 'system') {
-      return '🖥️'
-    }
-    return resolvedTheme === 'dark' ? '🌙' : '☀️'
+    return resolvedTheme === 'dark' ? '☀️' : '🌙'
   }
 
   const getLabel = () => {
-    if (theme === 'system') {
-      return 'System'
-    }
-    return theme === 'dark' ? 'Dark' : 'Light'
+    return resolvedTheme === 'dark' ? 'Light mode' : 'Dark mode'
+  }
+
+  const getDescription = () => {
+    return resolvedTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
   }
 
   return (
     <button
       className={cn(
-        'flex items-center gap-2 p-3 rounded-lg glass hover-lift transition-all duration-300',
-        'hover:bg-white/10',
+        // Enhanced mobile styling
+        'flex items-center justify-between w-full p-4 rounded-xl glass hover-lift transition-all duration-300',
+        'hover:bg-teal-500/10 dark:hover:bg-teal-400/10',
+        'border border-transparent hover:border-teal-500/20 dark:hover:border-teal-400/20',
         'focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50',
+        'shadow-md hover:shadow-lg active:scale-95',
+        'min-h-[56px]', // Larger touch target for mobile
         className
       )}
       onClick={handleToggle}
-      aria-label={`Toggle theme. Current: ${getLabel()}`}
+      aria-label={getDescription()}
     >
-      <span className="text-lg select-none">{getIcon()}</span>
-      <span className="text-sm font-medium">{getLabel()}</span>
+      <div className="flex items-center gap-3">
+        <span 
+          className="text-xl select-none transition-transform duration-300"
+          role="img"
+          aria-label={resolvedTheme === 'dark' ? 'Sun icon' : 'Moon icon'}
+        >
+          {getIcon()}
+        </span>
+        <div className="text-left">
+          <div className="text-sm font-semibold text-gray-900 dark:text-white">
+            {getLabel()}
+          </div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">
+            {getDescription()}
+          </div>
+        </div>
+      </div>
+      
+      {/* Toggle switch indicator */}
+      <div className={cn(
+        'relative w-12 h-6 rounded-full transition-colors duration-300',
+        resolvedTheme === 'dark' 
+          ? 'bg-blue-500' 
+          : 'bg-amber-500'
+      )}>
+        <div className={cn(
+          'absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300',
+          resolvedTheme === 'dark' 
+            ? 'translate-x-6' 
+            : 'translate-x-0.5'
+        )} />
+      </div>
     </button>
   )
+}
+
+// Simplified system detection hook for improved reliability
+export function useSystemTheme() {
+  const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    // Initial system theme detection
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setSystemTheme(mediaQuery.matches ? 'dark' : 'light')
+
+    // Listen for system theme changes
+    const handleChange = (e: MediaQueryListEvent) => {
+      setSystemTheme(e.matches ? 'dark' : 'light')
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  return systemTheme
 }
