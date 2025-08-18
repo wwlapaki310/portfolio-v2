@@ -42,7 +42,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
-        <ThemeProvider defaultTheme="system">
+        <ThemeProvider>
           <Header />
           <main className="pt-16">
             {children}
