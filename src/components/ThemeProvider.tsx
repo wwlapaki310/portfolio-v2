@@ -1,93 +1,68 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
-
-type Theme = 'light' | 'dark' | 'system'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 interface ThemeContextType {
-  theme: Theme
-  setTheme: (theme: Theme) => void
-  resolvedTheme: 'light' | 'dark'
+  theme: 'light' | 'dark'
+  toggleTheme: () => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
-  return context
-}
-
-interface ThemeProviderProps {
-  children: React.ReactNode
-  defaultTheme?: Theme
-}
-
-export function ThemeProvider({ 
-  children, 
-  defaultTheme = 'system' 
-}: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme)
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark') // Default to dark theme
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Load theme from localStorage on mount
-    const savedTheme = localStorage.getItem('theme') as Theme | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-    }
-  }, [])
-
-  useEffect(() => {
-    // Save theme to localStorage whenever it changes
-    localStorage.setItem('theme', theme)
+    // Check if we're in the browser
+    setMounted(true)
+    
+    // Check for saved theme preference or default to system preference
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    
+    const initialTheme = savedTheme || systemTheme
+    setTheme(initialTheme)
     
     // Apply theme to document
-    const root = window.document.documentElement
-    root.classList.remove('light', 'dark')
+    applyTheme(initialTheme)
+  }, [])
+
+  const applyTheme = (newTheme: 'light' | 'dark') => {
+    const root = document.documentElement
     
-    let effectiveTheme: 'light' | 'dark'
-    
-    if (theme === 'system') {
-      effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches 
-        ? 'dark' 
-        : 'light'
+    if (newTheme === 'dark') {
+      root.classList.add('dark')
+      root.setAttribute('data-theme', 'dark')
     } else {
-      effectiveTheme = theme
+      root.classList.remove('dark')
+      root.setAttribute('data-theme', 'light')
     }
-    
-    root.classList.add(effectiveTheme)
-    setResolvedTheme(effectiveTheme)
-  }, [theme])
+  }
 
-  useEffect(() => {
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    
-    const handleChange = () => {
-      if (theme === 'system') {
-        const newResolvedTheme = mediaQuery.matches ? 'dark' : 'light'
-        document.documentElement.classList.remove('light', 'dark')
-        document.documentElement.classList.add(newResolvedTheme)
-        setResolvedTheme(newResolvedTheme)
-      }
-    }
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+    applyTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
+  }
 
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [theme])
-
-  const value = {
-    theme,
-    setTheme,
-    resolvedTheme,
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return <div style={{ visibility: 'hidden' }}>{children}</div>
   }
 
   return (
-    <ThemeContext.Provider value={value}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   )
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext)
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+  return context
 }
