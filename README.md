@@ -2,7 +2,7 @@
 
 Modern portfolio website built with Next.js 14, TypeScript, and Tailwind CSS.
 
-🟢 **Status**: Phase 1A完了！動画・デモリンク移行完了・カラーコントラスト大幅改善
+🟢 **Status**: Phase 1A完了！ダークモード機能追加・動画・デモリンク移行完了・カラーコントラスト大幅改善
 
 ## 🎯 Project Overview
 
@@ -33,6 +33,9 @@ src/
 │   ├── blog/              # Blog system
 │   └── slides/            # Presentations
 ├── components/            # Reusable components
+│   ├── ui/                # UI components
+│   ├── ThemeProvider.tsx  # Dark mode system
+│   └── Header.tsx         # Navigation with theme toggle
 ├── content/               # MDX content files
 ├── data/                  # JSON data files
 └── lib/                   # Utility functions
@@ -45,6 +48,7 @@ src/
 - [x] Tailwind CSS configuration
 - [x] GitHub Actions deployment
 - [x] Basic layout components
+- [x] **🌙 ダークモード切り替え機能** (Issue #2)
 - [x] **21プロジェクト完全移行**
 - [x] **YouTube動画埋め込み機能**
 - [x] **デモサイト・GitHubリンク追加**
@@ -72,7 +76,14 @@ src/
 - [ ] Analytics integration
 - [ ] PWA support
 
-## 🎉 Latest Achievements (August 11, 2025)
+## 🎉 Latest Achievements (August 18, 2025)
+
+### 🌙 **New: Dark Mode Toggle**
+- **Complete Theme System**: Light/Dark mode with smooth transitions
+- **Smart Persistence**: Remembers user preference in localStorage
+- **System Integration**: Auto-detects system theme preference
+- **Accessible Design**: Optimized for all devices and touch targets
+- **Smooth Animations**: Beautiful icon transitions and theme switching
 
 ### 📊 **Content Statistics**
 - **Projects**: 21 完了 (100% migration from original site)
@@ -84,6 +95,7 @@ src/
 ### 🎨 **Design Improvements**
 - **Accessibility**: WCAG 2.1 AA compliance achieved
 - **Color Contrast**: 60% improvement in readability
+- **Dark Mode**: Complete theme system with instant switching
 - **Mobile Responsive**: All devices tested and optimized
 - **Performance**: Core Web Vitals optimized
 
@@ -128,6 +140,7 @@ npm run build
 
 - **Performance**: Fast loading, optimized images, code splitting
 - **Accessibility**: WCAG 2.1 AA compliance, proper contrast, keyboard navigation
+- **User Choice**: Dark/light mode preference with system integration
 - **Mobile First**: Responsive design for all devices
 - **Clean Code**: TypeScript, ESLint, organized structure
 
@@ -142,9 +155,9 @@ npm run build
 
 ### User Experience
 - ✅ SPA-like navigation with Next.js routing
+- ✅ **Dark/light mode toggle with smooth animations** 🌙
 - ✅ Improved color contrast and accessibility
 - ✅ Live project demos and GitHub integration
-- 🚧 Dark/light mode toggle
 - 🚧 Search functionality
 - 🚧 Progressive loading
 
@@ -172,7 +185,13 @@ npm run build
 
 ## 🔄 Version History
 
-### v2.1.0 (August 11, 2025) - Current
+### v2.2.0 (August 18, 2025) - Current
+- ✅ **Dark mode toggle functionality** (Issue #2) 🌙
+- ✅ ThemeProvider system with local storage
+- ✅ Smooth theme transition animations
+- ✅ Mobile-optimized theme switcher
+
+### v2.1.0 (August 11, 2025)
 - ✅ Complete content migration (21 projects)
 - ✅ YouTube video embedding
 - ✅ Live demo integration
@@ -188,6 +207,8 @@ npm run build
 ---
 
 **Status**: 🚀 **Phase 1A Complete** - Ready for Phase 1B
+
+**Latest**: 🌙 Dark mode functionality added! Users can now switch between light and dark themes with smooth animations.
 
 Track the latest progress in [Issues](https://github.com/wwlapaki310/portfolio-v2/issues) and see the live site at [https://wwlapaki310.github.io/portfolio-v2/](https://wwlapaki310.github.io/portfolio-v2/)
 
